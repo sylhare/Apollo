@@ -9,7 +9,6 @@ const typeDefs = gql`
   # This "Book" type defines the queryable fields for every book in our data source.
   type Book {
     title: String
-    author: String
     author: Author
   }
 
@@ -25,27 +24,39 @@ const typeDefs = gql`
     books: [Book]
     authors: [Author]
   }
-  }
 `;
 
 // Data set
 // Here we define the data, but it can be fetched from a db or another API
+const authors = [
+    {
+        name: 'Paul Auster',
+        books: ['City of Glass', 'Moon Palace']
+    },
+    {
+        name: 'Kate Chopin',
+        books: ['The Awakening'],
+    }
+]
+
 const books = [
     {
-        title: 'The Awakening',
-        author: 'Kate Chopin',
+        title: 'City of Glass',
+        author: authors[0],
     },
     {
-        title: 'City of Glass',
-        author: 'Paul Auster',
+        title: 'The Awakening',
+        author: authors[1],
     },
 ];
+
 
 // Resolvers define the technique for fetching the types defined in the
 // schema. This resolver retrieves books from the "books" array above.
 const resolvers = {
     Query: {
         books: () => books,
+        authors: () => authors
     },
 };
 
