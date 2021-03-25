@@ -15,18 +15,40 @@ The server will run at [localhost:4000](http://localhost:4000/)
 
 ## Usage
 
-Once the api launch type the mutation query to retrieve the information you need:
+### Simple
+Once the api launch type this simple _mutation query_ to retrieve the information you need:
 
 ```graphql
 {
   books {
     title
-    author
   }
 }
 ```
 
-Here you want the books and for each the title and author.
+Here you want the books and for each the title.
+
+### Query
+
+You can use also named queries like:
+
+```graphql
+query GetBooks {
+    books {
+        title
+        author {
+            name
+        }
+    }
+}
+```
+
+Queries can be structured by the client based on the shape of the object types you define in your schema.
+That way they can retrieve as much or as little they need.
+
+### Mutation
+
+
 
 ## Sources
 
