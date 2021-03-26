@@ -30,7 +30,7 @@ Here you want the books and for each the title.
 
 ### Query
 
-You can use also named queries like:
+You can also use named queries like:
 
 ```graphql
 query GetBooks {
@@ -48,8 +48,23 @@ That way they can retrieve as much or as little they need.
 
 ### Mutation
 
+Add a book using the mutation query:
 
+```graphql
+mutation CreateBook {
+    addBook(title: "Fox in Socks", author: "Dr. Seuss") {
+        title
+        author {
+            name
+        }
+    }
+}
+```
+
+In theory, you'd have an asynchronous call to save and return the saved data.
+However, there's no database linked to it, so The book won't be saved.
 
 ## Sources
 
 - Apollo Server [getting started](https://www.apollographql.com/docs/apollo-server/getting-started/)
+- Apollo full stack [tutorial](https://www.apollographql.com/docs/tutorial/introduction/)

@@ -24,6 +24,12 @@ const typeDefs = gql`
     books: [Book]
     authors: [Author]
   }
+
+  # The "Mutation" type is similar in structure and purpose to the Query type.
+  # The Mutation type defines entry points for write operations.
+  type Mutation {
+      addBook(title: String, author: String): Book
+  }
 `;
 
 // Data set
@@ -41,15 +47,18 @@ const authors = [
 
 const books = [
     {
-        title: 'City of Glass',
-        author: authors[0],
-    },
-    {
         title: 'The Awakening',
         author: authors[1],
     },
+    {
+        title: 'City of Glass',
+        author: authors[0],
+    },
 ];
 
+async function createBook(title, author) {
+    return {title: title, author: { name: author }}
+}
 
 // Resolvers define the technique for fetching the types defined in the
 // schema. This resolver retrieves books from the "books" array above.
@@ -58,11 +67,18 @@ const resolvers = {
         books: () => books,
         authors: () => authors
     },
+    Mutation: {
+        addBook: async (_, { title, author }) => {
+            console.log("Create book " + title + " from " + author)
+            const createdBook = await createBook(title, author)
+            return createdBook ? createdBook : null;
+        }
+    }
 };
 
 // The ApolloServer constructor requires two parameters: your schema
 // definition and your set of resolvers.
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({ typeDefs, resolvers, introspection: true, playground: true });
 
 // The `listen` method launches a web server.
 server.listen().then(({ url }) => {
