@@ -4,7 +4,8 @@
   "description": "Apollo Server with GraphQL experimentation",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest  --watchAll",
+    "test:w": "jest  --watchAll",
+    "test": "jest",
     "start": "node src/index.js"
   },
   "repository": {
