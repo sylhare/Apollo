@@ -64,6 +64,20 @@ mutation CreateBook {
 In theory, you'd have an asynchronous call to save and return the saved data.
 However, there's no database linked to it, so The book won't be saved.
 
+### Subscriptions
+
+[Subscriptions](https://www.apollographql.com/docs/apollo-server/data/subscriptions/) are events that are pushed from the server to the client side subscribed to it.
+That means it can't be polled via http, but pushed via WebSocket protocol on a specific endpoint.
+For example, a chat application's server might use a subscription to push newly received messages to all clients in a particular chat room.
+
+```graphql
+subscription BookFeed {
+  bookAdded {
+    title
+  }
+}
+```
+
 ## Sources
 
 - Apollo Server [getting started](https://www.apollographql.com/docs/apollo-server/getting-started/)

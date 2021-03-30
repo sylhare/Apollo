@@ -1,3 +1,4 @@
+const { pubsub, BOOK_ADDED } = require("./subscription");
 const { authors } = require("./resources/datasources");
 const { books } = require("./resources/datasources");
 
@@ -16,9 +17,15 @@ const resolvers = {
         addBook: async (_, { title, author }) => {
             console.log("Create book " + title + " from " + author)
             const createdBook = await createBook(title, author)
+            await pubsub.publish(BOOK_ADDED, { bookAdded: createdBook })
             return createdBook ? createdBook : null;
         }
-    }
+    },
+    Subscription: {
+        bookAdded: {
+            subscribe: () => pubsub.asyncIterator([BOOK_ADDED]),
+        },
+    },
 };
 
 module.exports = { resolvers }
