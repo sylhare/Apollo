@@ -4,7 +4,7 @@ Apollo Server with GraphQL experimentation.
 
 ## Setup
 
-Install and run the server using:
+Install and run the server in the `javascript` folder using:
 
 ```bash
 npm install
