@@ -22,6 +22,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: cd javascript && echo $(pwd)
-    - run: echo $(pwd) && npm install
-    - run: npm test
+    - name: install
+      run: cd javascript && npm install
+    - name: test
+      run: cd javascript && npm test
