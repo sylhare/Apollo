@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 
 const app = express();
 app.use("*", cors());
-app.use(helmet());
+app.use(helmet({ contentSecurityPolicy: false }));
 app.use(compression());
 
 const server = new ApolloServer({ schema: serviceSchema });
