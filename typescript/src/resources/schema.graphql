@@ -1,3 +1,13 @@
+type Query {
+    getAllUsers: [User]
+    example: Example
+}
+
 type Example {
+    id: String
+    user: User
+}
+
+type User {
     name: String
 }

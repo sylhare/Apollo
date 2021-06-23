@@ -4,7 +4,7 @@ import { createServer } from "http";
 import compression from "compression";
 import cors from "cors";
 import helmet from "helmet";
-import { serviceSchema } from "./schemas";
+import { serviceSchema } from "./service/schemas";
 
 const PORT = process.env.PORT || 3000;
 

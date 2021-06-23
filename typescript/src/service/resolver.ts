@@ -1,4 +1,5 @@
 import {ApolloError} from "apollo-server-express";
+import {example} from "../resolvers/query/example";
 
 const ServiceResolvers = {
     Query: {
@@ -9,6 +10,7 @@ const ServiceResolvers = {
                 throw new ApolloError(error);
             }
         },
+        example
     },
 };
 
