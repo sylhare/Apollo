@@ -1,6 +1,5 @@
-package com.apollo.example
+package com.apollo.example.launch
 
-import LaunchDetailsQuery
 import com.apollographql.apollo.ApolloCall.Callback
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.Response
@@ -9,8 +8,10 @@ import com.apollographql.apollo.exception.ApolloException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.generated.launch.LaunchDetailsQuery
+import org.generated.launch.LaunchListQuery
 
-class GraphQLClient {
+class LaunchDetailsClient {
     companion object {
         const val SERVER_URL = "https://apollo-fullstack-tutorial.herokuapp.com/graphql"
     }
@@ -34,6 +35,16 @@ class GraphQLClient {
         apolloClient.query(LaunchDetailsQuery("83")).enqueue(callback)
     }
 
+    fun getDetails() {
+        scope.launch {
+            try {
+                val response = apolloClient.query(LaunchListQuery()).await()
+                println("Launch list: ${response.data}")
+            } catch (e: Exception) {
+                println("Error $e")
+            }
+        }
+    }
 
     private suspend fun queryLaunchDetails(id: String) = try {
         apolloClient.query(LaunchDetailsQuery(id = id)).await()

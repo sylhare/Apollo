@@ -22,4 +22,9 @@ dependencies {
 apollo {
     // instruct the compiler to generate Kotlin models
     generateKotlinModels.set(true)
+    service("launch") {
+        sourceFolder.set("launch")
+        rootPackageName.set("org.generated.launch")
+    }
+
 }
