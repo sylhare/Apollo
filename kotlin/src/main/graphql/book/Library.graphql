@@ -1,0 +1,17 @@
+query books {
+    books {
+        title
+        author {
+            name
+        }
+    }
+}
+
+mutation CreateBook($title: String!, $author: String!) {
+    addBook(title: $title, author: $author) {
+        title
+        author {
+            name
+        }
+    }
+}

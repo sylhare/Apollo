@@ -13,6 +13,14 @@ task:
   --schema="src/main/graphql/schema.json"
 ```
 
+Or locally:
+
+```shell
+./gradlew downloadApolloSchema \
+  --endpoint="http://localhost:4010/" \
+  --schema="src/main/graphql/schema.json"
+```
+
 You can use `--header="Authorization: Bearer $TOKEN"` if the endpoint requires authentication.
 
 > Make sure that the schema path is valid
