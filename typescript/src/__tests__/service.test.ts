@@ -1,5 +1,5 @@
 import { graphql } from "graphql";
-import { serviceSchema } from "../service/schemas";
+import { serviceSchema } from "../apollo/schemas";
 
 describe("User Schema", () => {
     test("Test getAllUsers query", async () => {
