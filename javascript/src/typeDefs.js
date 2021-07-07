@@ -16,12 +16,18 @@ const typeDefs = gql`
         books: [Book]
     }
 
+    type Cheeky {
+        message: String
+    }
+
     # The "Query" type is special: it lists all of the available queries that
     # clients can execute, along with the return type for each. In this
     # case, the "books" query returns an array of zero or more Books (defined above).
     type Query {
         books: [Book]
         authors: [Author]
+        cheeky(message: String!): Cheeky
+        ping(message: String!): String
     }
 
     # The "Mutation" type is similar in structure and purpose to the Query type.

@@ -8,6 +8,4 @@ const pubsub = new PubSub()
 
 const BOOK_ADDED = 'BOOK_ADDED'
 
-
-
 module.exports = { pubsub, BOOK_ADDED };

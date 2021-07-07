@@ -17,7 +17,7 @@ const books = [
     {
         title: 'City of Glass',
         author: authors[0],
-    },
+    }
 ];
 
-module.exports = { authors, books}
+module.exports = { authors, books }

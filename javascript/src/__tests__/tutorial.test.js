@@ -62,4 +62,31 @@ describe('[Tutorial tests]', () => {
         });
     });
 
-});
+    test("Query with params", async () => {
+        const { query } = createTestClient(server);
+        const { data } = await query({
+            query: gql`
+                query  GetCheeky {
+                    cheeky(message: "Heya") {
+                        message
+                    }
+                }`
+        });
+        console.log(data)
+        expect(data).toEqual({ cheeky: { message: "Heya" } });
+    });
+
+    test("Ping", async () => {
+        const { query } = createTestClient(server);
+        const { data } = await query({
+            query: gql`
+                query PingMessage($message: String!) {
+                    ping(message: $message)
+                }`,
+            variables: { message: 'Meow' },
+        });
+        expect(data).toEqual({ ping: "Answering Meow" });
+    });
+
+})
+;

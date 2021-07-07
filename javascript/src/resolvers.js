@@ -11,7 +11,11 @@ async function createBook(title, author) {
 const resolvers = {
     Query: {
         books: () => books,
-        authors: () => authors
+        authors: () => authors,
+        cheeky: (parent, args) => { return { message: args.message} },
+        ping (root, { message }, context, info) {
+            return `Answering ${message}`
+        }
     },
     Mutation: {
         addBook: async (_, { title, author }) => {
