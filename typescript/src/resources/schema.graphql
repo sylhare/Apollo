@@ -1,6 +1,12 @@
 type Query {
     getAllUsers: [User]
     example: Example
+    products: [Product]
+    product(id: Int!): Product
+}
+
+type Mutation {
+    createProduct(product: ProductInput): String
 }
 
 type Example {
@@ -10,4 +16,14 @@ type Example {
 
 type User {
     name: String
+}
+
+type Product {
+    id: Int,
+    name: String,
+    description: String
+}
+input ProductInput {
+    name: String,
+    description: String
 }
