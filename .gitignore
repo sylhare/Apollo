@@ -104,3 +104,6 @@ dist
 .tern-port
 .idea/**
 **/package-lock.json
+kotlin/.gradle/*
+**/.idea/**
+kotlin/build/**
