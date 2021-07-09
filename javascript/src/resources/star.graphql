@@ -1,0 +1,101 @@
+# Learn graphQL Schema in https://graphql.org/learn/schema/
+
+scalar Date
+
+interface Character {
+    id: ID!
+    name: String!
+    friends: [Character]
+    appearsIn: [Episode]!
+}
+
+type CharacterSimple {
+    name: String!
+    appearsIn: [Episode!]!
+}
+
+enum Episode {
+    NEWHOPE
+    EMPIRE
+    JEDI
+}
+
+type Human implements Character {
+    id: ID!
+    name: String!
+    friends: [Character]
+    appearsIn: [Episode]!
+    starships: [Starship]
+    totalCredits: Int
+}
+
+type Droid implements Character {
+    id: ID!
+    name: String!
+    friends: [Character]
+    appearsIn: [Episode]!
+    primaryFunction: String
+}
+
+type Starship {
+    id: ID!
+    name: String!
+    length(unit: LengthUnit = METER): Float
+}
+
+enum LengthUnit {
+    METER
+    MILES
+    LIGHTYEAR
+}
+
+input ReviewInput {
+    stars: Int!
+    commentary: String
+}
+
+type Review {
+    stars: Int!
+    commentary: String!
+}
+
+type Query {
+    all: [Character]
+    hero(episode: Episode): Character
+    droid(id: ID!): Droid
+}
+
+type Mutation {
+    createReview(episode: Episode, review: ReviewInput): Review
+}
+
+query DroidById($id: ID!) {
+    droid(id: $id) {
+        name
+    }
+}
+
+
+query HeroForEpisode($ep: Episode!) {
+    hero(episode: $ep) {
+        name
+        ... on Droid {
+            primaryFunction
+        }
+    }
+}
+
+mutation CreateReviewForEpisode($ep: Episode!, $review: ReviewInput!) {
+    createReview(episode: $ep, review: $review) {
+        stars
+        commentary
+    }
+}
+
+union SearchResult = Human | Droid | Starship
+
+
+
+
+
+

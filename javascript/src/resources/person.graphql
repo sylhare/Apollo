@@ -1,0 +1,71 @@
+# From https://www.howtographql.com/basics/2-core-concepts/
+
+type Person {
+    id: ID!
+    name: String!
+    age: Int!
+    posts: [Post!]!
+}
+
+type Post {
+    title: String!
+    author: Person!
+}
+
+type Query {
+    allPersons(last: Int): [Person!]!
+    allPersons: [Person!]!
+}
+
+type Mutation {
+    createPerson(name: String!, age: Int!): Person!
+}
+
+type Subscription {
+    newPerson: Person!
+}
+
+
+
+# Basic queries
+
+{
+    allPersons {
+        name
+        age
+        posts {
+            title
+        }
+    }
+}
+
+query LastPersons($last: Int!){
+    allPersons(last: $last) {
+        name
+    }
+}
+
+
+# Basic mutations
+
+mutation {
+    createPerson(name: "Bob", age: 36) {
+        name
+        age
+    }
+}
+
+mutation {
+    createPerson(name: "Alice", age: 36) {
+        id
+    }
+}
+
+# Basic subscriptions
+
+subscription {
+    newPerson {
+        name
+        age
+    }
+}
