@@ -17,7 +17,7 @@ Or locally:
 
 ```shell
 ./gradlew downloadApolloSchema \
-  --endpoint="http://localhost:4010/" \
+  --endpoint="http://localhost:4000/" \
   --schema="src/main/graphql/schema.json"
 ```
 
