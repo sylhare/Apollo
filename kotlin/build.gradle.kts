@@ -31,5 +31,9 @@ apollo {
         sourceFolder.set("launch")
         rootPackageName.set("org.generated.launch")
     }
+    service("example") {
+        sourceFolder.set("example")
+        rootPackageName.set("org.generated.example")
+    }
 
 }

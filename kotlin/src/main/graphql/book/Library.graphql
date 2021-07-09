@@ -1,4 +1,4 @@
-query books {
+query Books {
     books {
         title
         author {
