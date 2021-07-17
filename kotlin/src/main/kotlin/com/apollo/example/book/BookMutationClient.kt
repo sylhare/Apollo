@@ -6,9 +6,9 @@ import org.generated.book.CreateBookMutation
 
 class BookMutationClient : BookClient() {
 
-    fun createBook(title: String, author: String){
-        scope.launch {
-            apolloClient.mutate(CreateBookMutation(title, author)).await()
-        }
+    fun createBook(title: String, author: String) = scope.launch {
+        val response = apolloClient.mutate(CreateBookMutation(title, author)).await()
+        println("Mutation result: ${response.data}")
     }
+
 }

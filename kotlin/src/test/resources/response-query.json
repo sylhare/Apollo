@@ -1,0 +1,23 @@
+{
+  "data": {
+    "books": [
+      {
+        "title": "The Awakening",
+        "author": {
+          "name": "Kate Chopin",
+          "__typename": "Author"
+        },
+        "__typename": "Book"
+      },
+      {
+        "title": "City of Glass",
+        "author": {
+          "name": "Paul Auster",
+          "__typename": "Author"
+        },
+        "__typename": "Book"
+      }
+    ]
+  }
+}
+

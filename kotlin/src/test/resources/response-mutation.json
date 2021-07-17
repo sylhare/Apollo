@@ -1,0 +1,12 @@
+{
+  "data": {
+    "addBook": {
+      "title": "Fox in Socks",
+      "author": {
+        "name": "Dr. Seuss",
+        "__typename": "Author"
+      },
+      "__typename": "Book"
+    }
+  }
+}
