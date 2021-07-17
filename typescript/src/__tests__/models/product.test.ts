@@ -1,10 +1,10 @@
-import {ProductImpl, randomProduct} from "../models/ProductImpl";
+import {ExampleProduct, randomProduct} from "../../models/ExampleProduct";
 
 describe("Product Class", () => {
 
     test("Description", () => {
-        const p = new ProductImpl(1, "name", null)
-        const p2 = new ProductImpl(1, "name")
+        const p = new ExampleProduct(1, "name", null)
+        const p2 = new ExampleProduct(1, "name")
         expect(p).toEqual(p2);
     })
 

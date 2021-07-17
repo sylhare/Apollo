@@ -1,6 +1,6 @@
 import { Product } from "./DataTypes";
 
-export class ProductImpl implements Product {
+export class ExampleProduct implements Product {
     id: number;
     name: string;
     description: string;
@@ -17,5 +17,5 @@ export class ProductImpl implements Product {
 }
 
 export function randomProduct() {
-    return new ProductImpl(Math.floor(Math.random() * 100))
+    return new ExampleProduct(Math.floor(Math.random() * 100))
 }
