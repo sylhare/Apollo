@@ -17,6 +17,13 @@ dependencies {
     implementation("com.apollographql.apollo:apollo-runtime:2.5.9")
     // Coroutines extensions for easier asynchronicity handling
     implementation("com.apollographql.apollo:apollo-coroutines-support:2.5.9")
+
+    // tests
+    testImplementation("org.junit.jupiter:junit-jupiter:5.7.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.9.0")
+    testImplementation("com.squareup.okhttp3:okhttp:4.9.0")
 }
 
 apollo {
@@ -36,4 +43,8 @@ apollo {
         rootPackageName.set("org.generated.example")
     }
 
+}
+
+tasks.test {
+    useJUnitPlatform()
 }
