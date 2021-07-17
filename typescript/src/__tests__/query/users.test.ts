@@ -1,19 +1,18 @@
 import { graphql } from "graphql";
 import { serviceSchema } from "../../apollo/schemas";
 
-describe("Example", () => {
-    test("Test example query", async () => {
+describe("User Schema", () => {
+    test("Test getAllUsers query", async () => {
         const query = `
         {
-            example: example {
-                id
+            user: getAllUsers {
+                name
             }
         }
         `;
         return graphql(serviceSchema, query).then((result: any) => {
-            const example = result.data.example;
-            console.log(example)
-            expect(example.id).toBe('1');
+            const users = result.data.user;
+            expect(users.length).toBe(2);
         });
     });
 });

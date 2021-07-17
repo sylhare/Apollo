@@ -37,6 +37,7 @@ describe('[Tutorial tests]', () => {
                 }
             `
         });
+        console.log(JSON.stringify(data));
         expect(data).toEqual({
                 books: [
                     { title: "The Awakening", author: { name: "Kate Chopin" } },
@@ -57,6 +58,7 @@ describe('[Tutorial tests]', () => {
                 }
             `
         });
+        console.log(JSON.stringify(data));
         expect(data).toEqual({
             addBook: { title: "Fox in Socks", author: { name: "Dr. Seuss" } }
         });
