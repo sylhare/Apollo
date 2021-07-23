@@ -3,6 +3,8 @@ type Query {
     example: Example
     products: [Product]
     product(id: Int!): Product
+    allBooks: [Book]
+    book(title: String!): Book
 }
 
 type Mutation {
@@ -26,4 +28,13 @@ type Product {
 input ProductInput {
     name: String,
     description: String
+}
+
+type Book {
+    title: String!
+    author: Author
+}
+
+type Author {
+    name: String
 }
