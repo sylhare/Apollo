@@ -1,5 +1,5 @@
 import {ExampleProduct, randomProduct} from "../models/ExampleProduct";
-import { Product } from "../models/DataTypes";
+import { Product } from "../models/ProductType";
 
 export let products: Product[] = [new ExampleProduct(303), randomProduct(), randomProduct()];
 

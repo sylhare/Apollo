@@ -1,4 +1,4 @@
-import { Product } from "./DataTypes";
+import { Product } from "./ProductType";
 
 export class ExampleProduct implements Product {
     id: number;

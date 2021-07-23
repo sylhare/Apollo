@@ -1,5 +1,5 @@
 import { products } from "../../dataSource/products";
-import { Product, ProductId } from "../../models/DataTypes";
+import { Product, ProductId } from "../../models/ProductType";
 
 
 export function getProducts(): Promise<Product[]> {

@@ -1,8 +1,8 @@
 import { ApolloError } from "apollo-server-express";
 import { example } from "../resolvers/query/example";
-import { getProductById, getProducts } from "../resolvers/query/productsGet";
+import { getProductById, getProducts } from "../resolvers/query/productQueries";
 import { createProduct } from "../resolvers/mutations/productCreation";
-import { ProductInput } from "../models/DataTypes";
+import { ProductInput } from "../models/ProductType";
 
 const ServiceResolvers = {
     Query: {

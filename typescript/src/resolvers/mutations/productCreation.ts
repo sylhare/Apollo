@@ -1,5 +1,5 @@
 import { addProduct } from "../../dataSource/products";
-import { ProductInput } from "../../models/DataTypes";
+import { ProductInput } from "../../models/ProductType";
 
 export function createProduct(product: ProductInput) {
     const newId = Math.floor(Math.random() * 100)
