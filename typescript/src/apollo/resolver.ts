@@ -1,8 +1,9 @@
 import { ApolloError } from "apollo-server-express";
-import { example } from "../resolvers/query/example";
-import { getProductById, getProducts } from "../resolvers/query/productQueries";
-import { createProduct } from "../resolvers/mutations/productCreation";
 import { ProductInput } from "../models/ProductType";
+import { createProduct } from "../resolvers/mutations/productCreation";
+import { getProductById, getProducts } from "../resolvers/query/productQueries";
+import { getAllBooks, getBook } from "../resolvers/query/Books";
+import { example } from "../resolvers/query/example";
 
 const ServiceResolvers = {
     Query: {
@@ -13,9 +14,11 @@ const ServiceResolvers = {
                 throw new ApolloError(error);
             }
         },
-        products: async () => getProducts,
+        products: async () => getProducts(),
         product: async (_: any, { id }: { id: number }) => getProductById({ productId: id }),
-        example
+        example,
+        allBooks: async () => getAllBooks(),
+        book: async(parent: any, { title }: { title: string }) => getBook(title)
     },
     Mutation: {
         createProduct: async (_: any, { product }: { product: ProductInput }) => createProduct(product)
