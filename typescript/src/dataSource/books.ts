@@ -1,6 +1,13 @@
 import { Book } from "../models/BookType";
+import { products } from "./products";
 
 const books: Book[] = [
+    {
+        title: 'Book 1',
+        author: {
+            name: 'Author 1'
+        }
+    },
     {
         title: 'The legend of Saturna',
         author: {
@@ -16,7 +23,7 @@ const books: Book[] = [
     {
         title: 'Atlanta',
         author: {
-            name: 'Don ross'
+            name: 'Don Ross'
         }
     },
     {
@@ -29,4 +36,8 @@ const books: Book[] = [
 
 export function retrieveBooks(): Book[] {
     return books
+}
+
+export function retrieveBook(title: string): Book | null {
+    return books.find(book => book.title === title) ?? null
 }

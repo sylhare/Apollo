@@ -1,0 +1,12 @@
+{
+  "data": {
+    "book": {
+      "title": "Atlanta",
+      "author": {
+        "name": "Don Ross",
+        "__typename": "Author"
+      },
+      "__typename": "Book"
+    }
+  }
+}
