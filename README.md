@@ -2,6 +2,8 @@
 
 Apollo Server with GraphQL experimentation.
 
+> Find more in the article on my [blog](https://sylhare.github.io/2021/07/26/Apollo-and-graphql.html) 
+
 ## Setup
 
 Install and run the server in the `javascript` folder using:
