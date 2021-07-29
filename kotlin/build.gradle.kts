@@ -22,6 +22,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.2")
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+    testImplementation("io.mockk:mockk:1.11.0")
     testImplementation("com.squareup.okhttp3:mockwebserver:4.9.0")
     testImplementation("com.squareup.okhttp3:okhttp:4.9.0")
 }
