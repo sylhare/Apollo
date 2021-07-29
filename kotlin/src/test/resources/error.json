@@ -1,0 +1,18 @@
+{
+  "error": {
+    "errors": [
+      {
+        "message": "Cannot query field \"mission\" on type \"LAUNCH\".",
+        "locations": [
+          {
+            "line": 4,
+            "column": 5
+          }
+        ],
+        "extensions": {
+          "code": "GRAPHQL_VALIDATION_FAILED"
+        }
+      }
+    ]
+  }
+}
