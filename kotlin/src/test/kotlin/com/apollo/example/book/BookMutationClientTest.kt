@@ -3,25 +3,24 @@ package com.apollo.example.book
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
-import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
 import java.io.File
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 internal class BookTest {
 
     private val mockWebServer = MockWebServer()
     private val bookQueryClient = BookQueryClient()
     private val bookMutationClient = BookMutationClient()
 
-    @BeforeEach
+    @BeforeAll
     fun setup() {
         mockWebServer.start(4010)
     }
 
-    @AfterEach
+    @AfterAll
     fun teardown() {
         mockWebServer.shutdown()
     }
