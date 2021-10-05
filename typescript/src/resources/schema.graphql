@@ -29,12 +29,3 @@ input ProductInput {
     name: String,
     description: String
 }
-
-type Book {
-    title: String!
-    author: Author
-}
-
-type Author {
-    name: String
-}
