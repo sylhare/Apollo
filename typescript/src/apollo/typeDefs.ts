@@ -12,13 +12,10 @@ import path from "path";
 //   }
 // `;
 
-// Define multiple graphQL schema with file or directly
-export const ServiceTypeDefs = gql`
-    
-    type MixedUpExample {
-        value: String
-    }
-    
-    ${readFileSync(path.join(__dirname, '../resources/schema.graphql'), 'utf8')}
-    ${readFileSync(path.join(__dirname, '../resources/book.graphql'), 'utf8')}
-`;
+
+function schemaFrom(schema: string) {
+    return gql(readFileSync(path.join(__dirname, `../resources/${schema}`), 'utf8'));
+}
+
+// Define multiple graphQL schema with files
+export const ServiceTypeDefs = [schemaFrom('schema.graphql'), schemaFrom('book.graphql')];
