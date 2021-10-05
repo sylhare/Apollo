@@ -14,8 +14,8 @@ import path from "path";
 
 
 function schemaFrom(schema: string) {
-    return gql(readFileSync(path.join(__dirname, `../resources/${schema}`), 'utf8'));
+    return gql(readFileSync(path.join(process.cwd(), 'src', 'resources', schema), 'utf8'));
 }
 
 // Define multiple graphQL schema with files
-export const ServiceTypeDefs = [schemaFrom('schema.graphql'), schemaFrom('book.graphql')];
+export const ServiceTypeDefs = [schemaFrom('schema.graphql'), schemaFrom('other.graphql')];

@@ -11,7 +11,7 @@ const ServiceResolvers = {
             try {
                 return [{ name: "xyz" }, { name: "abc" }];
             } catch (error) {
-                throw new ApolloError(error);
+                throw new ApolloError("getAllUsers did not work");
             }
         },
         products: async () => getProducts(),
