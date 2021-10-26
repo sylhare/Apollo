@@ -53,6 +53,16 @@ describe("Books", () => {
             expect(receivedBooks.author.name).toBe('Don Ross');
         });
     });
+
+    it("queries the lord of the ring", async () => graphql(serviceSchema, `
+            query the_lord_of_the_rings {
+                lotr {
+                    title
+                }
+            }
+        `)
+        .then((result: any) => expect(result.data.lotr).toMatchObject({ title: 'The lord of the rings' })
+        ));
 });
 
 function testServer(dataSources: any): ApolloServerTestClient {

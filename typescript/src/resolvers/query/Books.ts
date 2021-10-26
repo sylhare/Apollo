@@ -10,6 +10,6 @@ export function getBook(title: string): Promise<Book | null> {
     return Promise.resolve(retrieveBook(title))
 }
 
-export function getBoooook(title: string): Promise<Book> {
+export function lotr(): Promise<Book> {
     return Promise.resolve({ title: "The lord of the rings", author: { name: "J.R.R. Tolkien"} })
 }
