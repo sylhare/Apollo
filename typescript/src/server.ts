@@ -4,7 +4,7 @@ import { createServer } from "http";
 import compression from "compression";
 import cors from "cors";
 import helmet from "helmet";
-import { serviceSchema } from "./apollo/schemas";
+import { serviceSchema } from "./app/schemas";
 const PORT = process.env.PORT || 3000;
 
 const app = express();
