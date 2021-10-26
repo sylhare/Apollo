@@ -1,0 +1,12 @@
+# Extend the type to use and add to it in multiple files without errors
+extend type Query {
+    movie: Movie
+}
+
+extend type Mutation {
+    addMovie(name: String): Movie
+}
+
+type Movie {
+    name: String
+}
