@@ -1,8 +1,8 @@
 import { graphql } from "graphql";
-import { serviceSchema } from "../../apollo/schemas";
+import { serviceSchema } from "../../app/schemas";
 
 describe("Example", () => {
-    test("Test example query", async () => {
+    test("Query", async () => {
         const query = `
         {
             example: example {
