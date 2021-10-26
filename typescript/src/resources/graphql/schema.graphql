@@ -5,10 +5,11 @@ type Query {
     product(id: Int!): Product
     allBooks: [Book]
     book(title: String!): Book
+    lotr: Book
 }
 
 type Mutation {
-    createProduct(product: ProductInput): String
+    createProduct(product: CreateProductInput): CreateProductResult
 }
 
 type Example {
@@ -25,9 +26,13 @@ type Product {
     name: String,
     description: String
 }
-input ProductInput {
+input CreateProductInput {
     name: String,
     description: String
+}
+
+type CreateProductResult {
+    result: String!
 }
 
 type Book {
