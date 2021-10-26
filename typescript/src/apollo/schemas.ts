@@ -1,8 +1,8 @@
 import { makeExecutableSchema } from "graphql-tools";
-import { ServiceTypeDefs } from "./typeDefs";
-import ServiceResolvers from "./resolver";
+import { typeDefs } from "./typeDefs";
+import resolvers from "./resolver";
 
 export const serviceSchema = makeExecutableSchema({
-    typeDefs: ServiceTypeDefs,
-    resolvers: ServiceResolvers,
+    typeDefs: typeDefs,
+    resolvers: resolvers,
 });

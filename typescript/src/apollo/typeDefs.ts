@@ -1,21 +1,17 @@
 import { gql } from "apollo-server-express";
-import { readFileSync } from "fs";
-import path from "path";
+import { DocumentNode } from 'graphql';
+import { readdirSync, readFileSync, statSync } from "fs";
+import { join } from "path";
 
-// Define directly the graphql schema
-// export const ServiceTypeDefs = gql`
-//   type User {
-//     name: String
-//   }
-//   type Query {
-//     getAllUsers: [User]
-//   }
-// `;
+function listFiles(directory: string): string[] {
+    return readdirSync(directory)
+        .map(name => join(directory, name))
+        .flatMap(path => statSync(path).isDirectory() ? listFiles(path) : [path]);
+}
 
-
-function schemaFrom(schema: string) {
-    return gql(readFileSync(path.join(process.cwd(), 'src', 'resources', schema), 'utf8'));
+function getTypeDefs(filename: string): DocumentNode {
+    return gql(readFileSync(filename, 'utf8'));
 }
 
 // Define multiple graphQL schema with files
-export const ServiceTypeDefs = [schemaFrom('schema.graphql'), schemaFrom('other.graphql')];
+export const typeDefs = listFiles(join(process.cwd(), 'src', 'resources', 'graphql')).map(getTypeDefs);

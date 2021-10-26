@@ -5,7 +5,7 @@ import { getProductById, getProducts } from "../resolvers/query/productQueries";
 import { getAllBooks, getBook } from "../resolvers/query/Books";
 import { example } from "../resolvers/query/example";
 
-const ServiceResolvers = {
+const resolvers = {
     Query: {
         getAllUsers: async (_: any, args: any) => {
             try {
@@ -25,4 +25,4 @@ const ServiceResolvers = {
     }
 };
 
-export default ServiceResolvers;
+export default resolvers;
