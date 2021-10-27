@@ -1,24 +1,10 @@
-type Query {
-    getAllUsers: [User]
-    example: Example
+extend type Query {
     products: [Product]
     product(id: Int!): Product
-    allBooks: [Book]
-    book(title: String!): Book
-    lotr: Book
 }
 
-type Mutation {
+extend type Mutation {
     createProduct(product: CreateProductInput): CreateProductResult
-}
-
-type Example {
-    id: String
-    user: User
-}
-
-type User {
-    name: String
 }
 
 type Product {
@@ -34,13 +20,3 @@ input CreateProductInput {
 type CreateProductResult {
     result: String!
 }
-
-type Book {
-    title: String!
-    author: Author
-}
-
-type Author {
-    name: String
-}
-

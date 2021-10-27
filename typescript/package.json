@@ -8,9 +8,9 @@
     "test:watch": "jest --verbose --detectOpenHandles",
     "test:cov": "jest --coverage",
     "start": "npm run build:dist && node 'dist/index.js'",
-    "copy-files": "mkdir dist/resources || true && cp src/resources/** dist/resources/",
+    "copy-files": "mkdir dist/resources || true && cp -R src/resources/** dist/resources/",
     "start:dev": "npm run build:dev",
-    "build": "nodemon 'src/app/index.ts' --exec 'ts-node' src/index.ts -e ts,graphql",
+    "build": "nodemon 'src/index.ts' --exec 'ts-node' src/index.ts -e ts,graphql",
     "build:dist": "tsc && npm run copy-files"
   },
   "repository": {
@@ -48,7 +48,6 @@
   },
   "devDependencies": {
     "@types/jest": "^26.0.22",
-    "apollo-server-testing": "^2.25.2",
     "jest": "^26.6.3",
     "ts-jest": "^26.5.4"
   }

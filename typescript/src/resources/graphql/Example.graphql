@@ -1,0 +1,48 @@
+type Query {
+    getAllUsers: [User]
+    example: Example
+}
+
+type Mutation {
+    exampleMutation(input: ExampleInput): ExamplePayload
+}
+
+type Example {
+    id: ID
+    user: User
+}
+
+type User {
+    name: String
+}
+
+input ExampleInput {
+    exampleId: ID!
+    newName: String!
+}
+
+type ExamplePayload {
+    example: Example
+    userError: ExampleError[]
+}
+
+union ExampleError = InvalidNameError | NameTooLongError
+
+type InvalidNameError {
+    message: String!
+    path: [String!]
+}
+
+type NameTooLongError {
+    message: String!
+    path: [String!]
+}
+
+interface UserError {
+    message: String!
+    path: [String!]
+}
+
+
+
+
