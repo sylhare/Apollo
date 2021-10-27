@@ -10,6 +10,10 @@
     "rootDir": "src",                               /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
     "removeComments": true,                         /* Do not emit comments to output. */
 
+    "declaration": true,                            /* Ensure that .d.ts files are created by tsc, but not .js files */
+    "emitDeclarationOnly": true,
+    "isolatedModules": true,                        /* Ensure that Babel can safely transpile files in the TypeScript project */
+
     /* Strict Type-Checking Options */
     "strict": true,                                 /* Enable all strict type-checking options. */
     "strictNullChecks": true,                    /* Enable strict null checks. */
@@ -21,7 +25,7 @@
     "forceConsistentCasingInFileNames": true        /* Disallow inconsistently-cased references to the same file. */
   },
   "exclude": [
-    "node_modules",
+    "/node_modules/",
     "src/__tests__/**"
   ]
 }

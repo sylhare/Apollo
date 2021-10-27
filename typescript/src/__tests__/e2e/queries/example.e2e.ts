@@ -1,19 +1,15 @@
 import { TestClient } from "../TestClient";
 import { gql } from "apollo-server-express";
-import { httpServer } from "../../../app/server";
+import { Application } from "../../../app/server";
 
 describe("Example", () => {
-    const server = httpServer;
-    const PORT = 3000;
+    const app = new Application();
 
-    beforeAll(async () => await server.listen({ port: PORT }, (): void =>
-        console.log(`🚀GraphQL-Server is running on http://localhost:${PORT}/graphql`)
-    ));
-
-    afterAll(async () => await server.close());
+    beforeAll(async () => app.start());
+    afterAll(async () => app.stop());
 
     test("Query", async () => {
-        const client = new TestClient(new URL(`http://localhost:${PORT}/graphql`))
+        const client = new TestClient(new URL(app.graphQlPath()))
         const example = await client.query({
             query: gql`
                 query {

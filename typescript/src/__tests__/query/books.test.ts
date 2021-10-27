@@ -1,7 +1,8 @@
 import { graphql } from "graphql";
 import { serviceSchema } from "../../app/schemas";
 import { Book } from "../../models/BookType";
-import { server } from "../../app/server";
+import { Application } from "../../app/server";
+import { ApolloServer } from "apollo-server-express";
 
 describe("Books", () => {
     const GET_BOOKS = `
@@ -17,7 +18,7 @@ describe("Books", () => {
         ));
 
     it("queries all books with the testServer", async () => {
-        const res = await server.executeOperation({ query: GET_BOOKS })
+        const res = await new ApolloServer({ schema: serviceSchema }).executeOperation({ query: GET_BOOKS })
 
         expect(res.errors).toBe(undefined)
         expect(res?.data?.allBooks).toMatchObject([

@@ -5,7 +5,7 @@ export class UserError {
     public readonly path: string[];
     public readonly __typename: string;
 
-    constructor(message: string, path: string[] = []) {
+    constructor(message: string, path: string[]) {
         this.message = message;
         this.path = path;
         this.__typename = this.constructor.name;

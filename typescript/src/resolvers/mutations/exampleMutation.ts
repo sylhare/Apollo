@@ -6,9 +6,11 @@ interface ExampleInput {
     newName: string
 }
 
+interface ExampleError extends UserError {}
+
 interface ExamplePayload {
     example: Example | null
-    userError: UserError[]
+    userError: ExampleError[]
 }
 
 // Resolver for mutation example, which will always return error(s)

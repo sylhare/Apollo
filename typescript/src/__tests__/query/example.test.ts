@@ -12,7 +12,6 @@ describe("Example", () => {
         `;
         return graphql(serviceSchema, query).then((result: any) => {
             const example = result.data.example;
-            console.log(example)
             expect(example.id).toBe('1');
         });
     });
