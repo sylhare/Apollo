@@ -1,10 +1,7 @@
 import { graphql } from "graphql";
 import { serviceSchema } from "../../app/schemas";
 import { Book } from "../../models/BookType";
-import { ApolloServerTestClient, createTestClient } from "apollo-server-testing";
-import { ApolloServer } from "apollo-server-express";
-import { typeDefs } from "../../app/typeDefs";
-import resolvers from "../../app/resolver";
+import { server } from "../../app/server";
 
 describe("Books", () => {
     const GET_BOOKS = `
@@ -20,8 +17,7 @@ describe("Books", () => {
         ));
 
     it("queries all books with the testServer", async () => {
-        const { query } = testServer(null);
-        const res = await query({ query: GET_BOOKS })
+        const res = await server.executeOperation({ query: GET_BOOKS })
 
         expect(res.errors).toBe(undefined)
         expect(res?.data?.allBooks).toMatchObject([
@@ -47,7 +43,6 @@ describe("Books", () => {
             }
         `;
         return graphql(serviceSchema, query).then((result: any) => {
-            console.log("Result received: " + JSON.stringify(result))
             const receivedBooks: Book = result.data.book;
             expect(receivedBooks.title).toBe('Atlanta');
             expect(receivedBooks.author.name).toBe('Don Ross');
@@ -64,9 +59,3 @@ describe("Books", () => {
         .then((result: any) => expect(result.data.lotr).toMatchObject({ title: 'The lord of the rings' })
         ));
 });
-
-function testServer(dataSources: any): ApolloServerTestClient {
-    return createTestClient(
-        new ApolloServer({ typeDefs, resolvers, dataSources })
-    )
-}

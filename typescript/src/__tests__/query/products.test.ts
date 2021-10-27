@@ -13,10 +13,14 @@ describe("Products Queries", () => {
             }        
         `;
         return graphql(serviceSchema, query).then((result: any) => {
-            console.log("Result received: " + JSON.stringify(result))
             const receivedProducts: Product[] = result.data.products;
             expect(receivedProducts.length).toBeTruthy()
-            expect(receivedProducts[0].id).toBe(303)
+            expect(receivedProducts).toMatchObject([
+                { id: 303, name: "Product 303" },
+                { id: expect.any(Number), name: expect.any(String) },
+                { id: 1, name: "Product 1" },
+                { id: expect.any(Number), name: expect.any(String) }
+            ])
         });
     });
 
@@ -30,7 +34,6 @@ describe("Products Queries", () => {
             }        
         `;
         return graphql(serviceSchema, query).then((result: any) => {
-            console.log("Result received: " + JSON.stringify(result))
             const receivedProduct: Product = result.data.product;
             expect(receivedProduct.id).toBe(1)
             expect(receivedProduct.name).toBe("Product 1")

@@ -1,4 +1,3 @@
-import { ApolloError } from "apollo-server-express";
 import { ProductInput } from "../models/ProductType";
 import { createProduct } from "../resolvers/mutations/productCreation";
 import { getProductById, getProducts } from "../resolvers/query/productQueries";
@@ -8,12 +7,12 @@ import { example } from "../resolvers/query/example";
 const resolvers = {
     Query: {
         getAllUsers: async (_: any, args: any) => ([{ name: "xyz" }, { name: "abc" }]),
+        example,
         products: async () => getProducts(),
         product: async (_: any, { id }: { id: number }) => getProductById({ productId: id }),
-        example,
         allBooks: async () => getAllBooks(),
-        book: async(parent: any, { title }: { title: string }) => getBook(title),
-        lotr: async() => lotr()
+        book: async (parent: any, { title }: { title: string }) => getBook(title),
+        lotr: async () => lotr()
     },
     Mutation: {
         createProduct: async (_: any, { product }: { product: ProductInput }) => createProduct(product)
