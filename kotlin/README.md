@@ -1,5 +1,6 @@
 # Apollo with kotlin
 
+This is for an Apollo GraphQL Client.
 Follow the get started [Apollo Kotlin](https://www.apollographql.com/docs/android/essentials/get-started-kotlin/)
 
 ## Setup
