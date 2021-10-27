@@ -3,6 +3,7 @@ import { createProduct } from "../resolvers/mutations/productCreation";
 import { getProductById, getProducts } from "../resolvers/query/productQueries";
 import { getAllBooks, getBook, lotr } from "../resolvers/query/Books";
 import { example } from "../resolvers/query/example";
+import { exampleMutation } from "../resolvers/mutations/exampleMutation";
 
 const resolvers = {
     Query: {
@@ -15,7 +16,8 @@ const resolvers = {
         lotr: async () => lotr()
     },
     Mutation: {
-        createProduct: async (_: any, { product }: { product: ProductInput }) => createProduct(product)
+        createProduct: async (_: any, { product }: { product: ProductInput }) => createProduct(product),
+        exampleMutation
     }
 };
 

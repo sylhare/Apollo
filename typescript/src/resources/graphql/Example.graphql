@@ -23,7 +23,7 @@ input ExampleInput {
 
 type ExamplePayload {
     example: Example
-    userError: ExampleError[]
+    userError: [ExampleError]
 }
 
 union ExampleError = InvalidNameError | NameTooLongError
