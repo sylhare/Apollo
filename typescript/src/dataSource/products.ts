@@ -1,13 +1,13 @@
-import { ExampleProduct, randomProduct } from "../models/ExampleProduct";
-import { Product } from "../models/ProductType";
+import { Product, randomProduct } from "../models/Product";
+import { ProductReference } from "../models/ProductReference";
 
-export let products: Product[] = [
-    new ExampleProduct(303),
+export let products: ProductReference[] = [
+    new Product(303),
     randomProduct(),
-    new ExampleProduct(1),
+    new Product(1),
     randomProduct()
 ];
 
-export function addProduct(product: Product) {
+export function addProduct(product: ProductReference) {
     products = products.concat(product)
 }

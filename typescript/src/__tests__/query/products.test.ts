@@ -1,6 +1,6 @@
 import { graphql } from "graphql";
 import { serviceSchema } from "../../app/schemas";
-import { Product } from "../../models/ProductType";
+import { ProductReference } from "../../models/ProductReference";
 
 describe("Products Queries", () => {
     test("Get products", async () => {
@@ -13,7 +13,7 @@ describe("Products Queries", () => {
             }        
         `;
         return graphql(serviceSchema, query).then((result: any) => {
-            const receivedProducts: Product[] = result.data.products;
+            const receivedProducts: ProductReference[] = result.data.products;
             expect(receivedProducts.length).toBeTruthy()
             expect(receivedProducts).toMatchObject([
                 { id: 303, name: "Product 303" },
@@ -34,7 +34,7 @@ describe("Products Queries", () => {
             }        
         `;
         return graphql(serviceSchema, query).then((result: any) => {
-            const receivedProduct: Product = result.data.product;
+            const receivedProduct: ProductReference = result.data.product;
             expect(receivedProduct.id).toBe(1)
             expect(receivedProduct.name).toBe("Product 1")
         });

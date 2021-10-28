@@ -1,4 +1,4 @@
-import { ProductInput } from "../models/ProductType";
+import { ProductInput } from "../models/ProductReference";
 import { createProduct } from "../resolvers/mutations/productCreation";
 import { getProductById, getProducts } from "../resolvers/query/productQueries";
 import { getAllBooks, getBook, lotr } from "../resolvers/query/Books";

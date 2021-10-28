@@ -1,5 +1,5 @@
 import { addProduct } from "../../dataSource/products";
-import { ProductInput } from "../../models/ProductType";
+import { ProductInput } from "../../models/ProductReference";
 import { ProductCreationError } from "../../app/errors";
 
 export async function createProduct(product: ProductInput) {

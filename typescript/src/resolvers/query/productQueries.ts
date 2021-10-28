@@ -1,12 +1,12 @@
 import { products } from "../../dataSource/products";
-import { Product, ProductId } from "../../models/ProductType";
+import { ProductReference, ProductId } from "../../models/ProductReference";
 
 
-export function getProducts(): Promise<Product[]> {
+export function getProducts(): Promise<ProductReference[]> {
     return Promise.resolve(products);
 }
 
 // ProductInput is the same as { productId: number }
-export function getProductById({ productId }: ProductId): Promise<Product | undefined> {
+export function getProductById({ productId }: ProductId): Promise<ProductReference | undefined> {
     return Promise.resolve(products.find(p => p.id === productId));
 }

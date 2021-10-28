@@ -1,6 +1,6 @@
-import { Product } from "./ProductType";
+import { ProductReference } from "./ProductReference";
 
-export class ExampleProduct implements Product {
+export class Product implements ProductReference {
     id: number;
     name: string;
     description: string;
@@ -17,5 +17,5 @@ export class ExampleProduct implements Product {
 }
 
 export function randomProduct() {
-    return new ExampleProduct(Math.floor(Math.random() * 100))
+    return new Product(Math.floor(Math.random() * 100))
 }
