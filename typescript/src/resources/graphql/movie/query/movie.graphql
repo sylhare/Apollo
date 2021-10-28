@@ -1,0 +1,20 @@
+extend type Query {
+    movie: Movie
+}
+
+type Movie {
+    name: String!
+    director: MoviePerson!
+    actors: [MoviePerson]!
+}
+
+type MoviePerson {
+    name: String!
+    movies: [Movie]!
+    role: [Role!]!
+}
+
+enum Role {
+    DIRECTOR
+    ACTOR
+}

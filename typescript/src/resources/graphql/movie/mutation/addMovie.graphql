@@ -1,0 +1,21 @@
+extend type Mutation {
+    addMovie(input: AddMovieInput): AddMoviePayload
+}
+
+input AddMovieInput {
+    movieName: String!
+    directorName: String!
+    actorNames: [String]
+}
+
+type AddMoviePayload {
+    movie: Movie
+    userError: [AddMovieUserError!]
+}
+
+union AddMovieUserError = DuplicateMovieError
+
+type DuplicateMovieError implements UserError {
+    message: String!
+    path: [String!]
+}
