@@ -1,5 +1,4 @@
 import { Book } from "../models/BookType";
-import { products } from "./products";
 
 const books: Book[] = [
     {
