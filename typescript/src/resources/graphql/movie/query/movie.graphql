@@ -1,9 +1,9 @@
 extend type Query {
-    movie: Movie
+    movie(title: String!): Movie
 }
 
 type Movie {
-    name: String!
+    title: String!
     director: MoviePerson!
     actors: [MoviePerson]!
 }

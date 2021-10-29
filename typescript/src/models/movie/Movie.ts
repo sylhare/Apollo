@@ -1,12 +1,12 @@
 import { MoviePerson } from "./MoviePerson";
 
 export default class Movie {
-    readonly name: string;
+    readonly title: string;
     readonly directorName: string;
     readonly actorsName: string[];
 
-    constructor(name: string, director: string, actors: string[] = []) {
-        this.name = name;
+    constructor(title: string, director: string, actors: string[] = []) {
+        this.title = title;
         this.directorName = director;
         this.actorsName = actors;
     }

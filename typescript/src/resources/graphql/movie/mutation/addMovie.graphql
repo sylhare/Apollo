@@ -3,7 +3,7 @@ extend type Mutation {
 }
 
 input AddMovieInput {
-    movieName: String!
+    movieTitle: String!
     directorName: String!
     actorNames: [String]
 }

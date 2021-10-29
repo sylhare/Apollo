@@ -1,7 +1,7 @@
 import Movie from "../models/movie/Movie";
 import { MoviePerson, Role } from "../models/movie/MoviePerson";
 
-const movies: Movie[] = [
+export const movies: Movie[] = [
     new Movie('Matrix', 'The Wachowskis', ['Keanu Reeves', 'Carrie-Anne Moss', 'Laurence Fishburne']),
     new Movie('John Wick', 'Chad Stahelski', ['Keanu Reeves']),
     new Movie('Apocalypse Now', 'Francis Ford Coppola', ['Martin Sheen', 'Laurence Fishburne']),
@@ -9,7 +9,7 @@ const movies: Movie[] = [
     new Movie('Surface', 'Leo Strozzi'),
 ]
 
-const moviePersons: MoviePerson[] = [
+export const moviePersons: MoviePerson[] = [
     new MoviePerson('The Wachowskis', Role.DIRECTOR, ['Matrix']),
     new MoviePerson('Keanu Reeves', Role.ACTOR, ['Matrix', 'John Wick', 'Bram Stoker\'s Dracula']),
     new MoviePerson('Carrie-Anne Moss', Role.ACTOR, ['Matrix']),
