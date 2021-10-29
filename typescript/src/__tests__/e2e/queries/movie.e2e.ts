@@ -35,6 +35,9 @@ describe("Movie", () => {
                 }]
         });
     });
-        });
+
+    it("returns null when the movie does not exist", async () => {
+        const client = new TestClient(new URL(app.graphQlPath()));
+        await expect(client.movie.queryByTitle('qwerty')).resolves.toBeNull();
     });
 });
