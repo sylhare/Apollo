@@ -1,5 +1,3 @@
-import { MoviePerson } from "./MoviePerson";
-
 export default class Movie {
     readonly title: string;
     readonly directorName: string;

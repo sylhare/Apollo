@@ -10,8 +10,8 @@ type Movie {
 
 type MoviePerson {
     name: String!
-    movies: [Movie]!
-    role: [Role!]!
+    movies: [String]!
+    role: Role!
 }
 
 enum Role {
