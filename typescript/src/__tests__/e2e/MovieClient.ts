@@ -1,7 +1,13 @@
 import { TestClient } from "./TestClient";
 import { gql } from "apollo-server-express";
-import Movie from "../../models/movie/Movie";
 import { movieFragment } from "./fragments";
+import { GraphQLMoviePerson } from "../../resolvers/query/Movie";
+
+export interface GraphQLMovie {
+    title: string
+    director: GraphQLMoviePerson
+    actors: GraphQLMoviePerson
+}
 
 export class MovieClient {
     readonly client: TestClient;
@@ -10,7 +16,7 @@ export class MovieClient {
         this.client = client;
     }
 
-    queryByTitle(title: string): Promise<Movie> {
+    queryByTitle(title: string): Promise<GraphQLMovie> {
         return this.client.query({
             query: gql`
                 ${movieFragment}

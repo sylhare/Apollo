@@ -6,6 +6,7 @@ export const movieFragment = gql`
         director {
             name
             role
+            movies
         }
     }
 `;

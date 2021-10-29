@@ -15,6 +15,7 @@ describe("Movie", () => {
             director: {
                 name: 'The Wachowskis',
                 role: Role.DIRECTOR,
+                movies: ['Matrix']
             }
         });
     });
