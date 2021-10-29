@@ -5,7 +5,7 @@ import { Application } from "../../../app/server";
 describe("Example", () => {
     const app = new Application();
 
-    beforeAll(async () => app.start());
+    beforeAll(async () => app.start(1111));
     afterAll(async () => app.stop());
 
     test("Query", async () => {

@@ -4,11 +4,13 @@ import { getProductById, getProducts } from "../resolvers/query/productQueries";
 import { getAllBooks, getBook, lotr } from "../resolvers/query/Books";
 import { example } from "../resolvers/query/example";
 import { exampleMutation } from "../resolvers/mutations/exampleMutation";
+import { movie } from "../resolvers/query/Movie";
 
 const resolvers = {
     Query: {
         getAllUsers: async (_: any, args: any) => ([{ name: "xyz" }, { name: "abc" }]),
         example,
+        movie,
         products: async () => getProducts(),
         product: async (_: any, { id }: { id: number }) => getProductById({ productId: id }),
         allBooks: async () => getAllBooks(),

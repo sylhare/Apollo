@@ -10,8 +10,11 @@ import {
     OperationVariables,
     QueryOptions,
 } from '@apollo/client/core';
+import { MovieClient } from "./MovieClient";
 
 export class TestClient extends ApolloClient<NormalizedCacheObject> {
+    readonly movie: MovieClient = new MovieClient(this);
+
     constructor(url: URL, httpFetch: typeof fetch = fetch) {
         super({
             cache: new InMemoryCache(),
