@@ -1,7 +1,13 @@
 import Movie from "../../models/movie/Movie";
 import { moviePersons } from "../../dataSource/movies";
-import { GraphQLMoviePerson } from "../query/Movie";
+import { Role } from "../../models/movie/MoviePerson";
 
-export async function director(parent: Movie, _: any): Promise<GraphQLMoviePerson | null> {
-    return moviePersons.find(it => it.name === parent.directorName) ?? null;
+export interface GraphQLMoviePerson {
+    name: string
+    movies: string[]
+    role: Role
+}
+
+export async function director(parent: Movie, _: any): Promise<GraphQLMoviePerson> {
+    return moviePersons.find(it => it.name === parent.directorName)!;
 }

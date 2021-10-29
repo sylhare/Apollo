@@ -8,5 +8,10 @@ export const movieFragment = gql`
             role
             movies
         }
+        actors {
+            name
+            role
+            movies
+        }
     }
 `;

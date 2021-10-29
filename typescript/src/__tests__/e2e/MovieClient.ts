@@ -1,7 +1,7 @@
 import { TestClient } from "./TestClient";
 import { gql } from "apollo-server-express";
 import { movieFragment } from "./fragments";
-import { GraphQLMoviePerson } from "../../resolvers/query/Movie";
+import { GraphQLMoviePerson } from "../../resolvers/movie/director";
 
 export interface GraphQLMovie {
     title: string

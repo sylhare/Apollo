@@ -15,8 +15,26 @@ describe("Movie", () => {
             director: {
                 name: 'The Wachowskis',
                 role: Role.DIRECTOR,
-                movies: ['Matrix']
-            }
+                movies: ['Matrix'],
+            },
+            actors: [
+                {
+                    name: 'Keanu Reeves',
+                    role: 'ACTOR',
+                    movies: ["Matrix", "John Wick", "Bram Stoker's Dracula"]
+                },
+                {
+                    name: 'Carrie-Anne Moss',
+                    role: 'ACTOR',
+                    movies: ["Matrix"]
+                },
+                {
+                    name: 'Laurence Fishburne',
+                    role: 'ACTOR',
+                    movies: ["Matrix", "Apocalypse Now"]
+                }]
+        });
+    });
         });
     });
 });
