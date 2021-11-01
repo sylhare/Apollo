@@ -7,6 +7,7 @@ import { exampleMutation } from "../resolvers/mutations/exampleMutation";
 import { movie } from "../resolvers/query/Movie";
 import { director } from "../resolvers/movie/director";
 import { actors } from "../resolvers/movie/actors";
+import { movies } from "../resolvers/moviePerson/movies";
 
 const resolvers = {
     Query: {
@@ -22,6 +23,9 @@ const resolvers = {
     Movie: {
         director,
         actors,
+    },
+    MoviePerson: {
+        movies
     },
     Mutation: {
         createProduct: async (_: any, { product }: { product: ProductInput }) => createProduct(product),

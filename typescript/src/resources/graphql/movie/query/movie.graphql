@@ -10,7 +10,7 @@ type Movie {
 
 type MoviePerson {
     name: String!
-    movies: [String]!
+    movies: [Movie]!
     role: Role!
 }
 

@@ -4,6 +4,10 @@ import { Role } from "../../../models/movie/MoviePerson";
 
 describe("Movie", () => {
     const app = new Application();
+    const matrixDirector = {
+        name: 'The Wachowskis',
+        role: Role.DIRECTOR,
+    }
 
     beforeAll(async () => app.start(2222));
     afterAll(async () => app.stop());
@@ -13,26 +17,58 @@ describe("Movie", () => {
         await expect(client.movie.queryByTitle('Matrix')).resolves.toMatchObject({
             title: 'Matrix',
             director: {
-                name: 'The Wachowskis',
-                role: Role.DIRECTOR,
-                movies: ['Matrix'],
+                ...matrixDirector,
+                movies: [{
+                    title: "Matrix"
+                }]
             },
             actors: [
                 {
                     name: 'Keanu Reeves',
                     role: 'ACTOR',
-                    movies: ["Matrix", "John Wick", "Bram Stoker's Dracula"]
+                    movies: [{
+                        title: "Matrix",
+                    }, {
+                        title: "John Wick",
+                    }, {
+                        title: "Bram Stoker's Dracula",
+                    }]
                 },
                 {
                     name: 'Carrie-Anne Moss',
                     role: 'ACTOR',
-                    movies: ["Matrix"]
+                    movies: [{
+                        title: "Matrix"
+                    }]
                 },
                 {
                     name: 'Laurence Fishburne',
                     role: 'ACTOR',
-                    movies: ["Matrix", "Apocalypse Now"]
+                    movies: [{
+                        title: "Matrix",
+                    }, {
+                        title: "Apocalypse Now",
+                    }]
                 }]
+        });
+    });
+
+    it("queries nested objects in movie", async () => {
+        const client = new TestClient(new URL(app.graphQlPath()));
+        await expect(client.movie.nestedQueryByTitle('Matrix')).resolves.toMatchObject({
+            title: 'Matrix',
+            director: {
+                ...matrixDirector,
+                movies: [{
+                    title: "Matrix",
+                    director: {
+                        ...matrixDirector,
+                        movies: [{
+                            title: "Matrix",
+                        }]
+                    }
+                }]
+            }
         });
     });
 

@@ -6,12 +6,36 @@ export const movieFragment = gql`
         director {
             name
             role
-            movies
+            movies {
+                title
+            }
         }
         actors {
             name
             role
-            movies
+            movies {
+                title
+            }
+        }
+    }
+`;
+
+export const nestedMovieFragment = gql`
+    fragment nestedMovieFragment on Movie {
+        title
+        director {
+            name
+            role
+            movies {
+                title
+                director {
+                    name
+                    role
+                    movies {
+                        title
+                    }
+                }
+            }
         }
     }
 `;
