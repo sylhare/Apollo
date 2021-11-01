@@ -72,6 +72,25 @@ describe("Movie", () => {
         });
     });
 
+    it("queries some scenes in movie", async () => {
+        const client = new TestClient(new URL(app.graphQlPath()));
+        await expect(client.movie.queryByTitleFilterScenes('Bram Stoker\'s Dracula')).resolves.toMatchObject({
+            scenes: [{ __typename: "Scene", name: "Bran Castle" }]
+        });
+    });
+
+    it("queries all scenes in movie", async () => {
+        const client = new TestClient(new URL(app.graphQlPath()));
+        await expect(client.movie.queryByTitleAllScenes('Bram Stoker\'s Dracula')).resolves.toMatchObject({
+            "scenes": [
+                { __typename: "Scene", name: "Bran Castle" },
+                { __typename: "Scene", name: "street" },
+                { __typename: "Scene", name: "harbour" },
+                { __typename: "Scene", name: "countrySide" },
+            ],
+        });
+    });
+
     it("rejects overly nested queries for movie", async () => {
         const client = new TestClient(new URL(app.graphQlPath()));
         await expect(client.movie.overlyNestedQueryByTitle('Matrix')).rejects.toMatch("exceeds maximum operation depth of")

@@ -1,8 +1,15 @@
 import { gql } from "apollo-server-express";
 
-export const movieFragment = gql`
-    fragment movieFragment on Movie {
+export const baseMovieFragment = gql`
+    fragment baseMovieFragment on Movie {
         title
+    }
+`;
+
+export const movieFragment = gql`
+    ${baseMovieFragment}
+    fragment movieFragment on Movie {
+        ...baseMovieFragment
         director {
             name
             role
@@ -21,8 +28,9 @@ export const movieFragment = gql`
 `;
 
 export const nestedMovieFragment = gql`
+    ${baseMovieFragment}
     fragment nestedMovieFragment on Movie {
-        title
+        ...baseMovieFragment
         director {
             name
             role

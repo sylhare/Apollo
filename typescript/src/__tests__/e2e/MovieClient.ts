@@ -1,6 +1,6 @@
 import { TestClient } from "./TestClient";
 import { gql } from "apollo-server-express";
-import { movieFragment, nestedMovieFragment, overlyNestedMovieFragment } from "./fragments";
+import { baseMovieFragment, movieFragment, nestedMovieFragment, overlyNestedMovieFragment } from "./fragments";
 import { GraphQLMoviePerson } from "../../resolvers/movie/director";
 
 export interface GraphQLMovie {
@@ -23,6 +23,40 @@ export class MovieClient {
                 query($title: String!) {
                     movie(title: $title) {
                         ...movieFragment
+                    }
+                }
+            `,
+            variables: { title },
+        }).then(result => result.data.movie);
+    }
+
+    queryByTitleFilterScenes(title: string): Promise<GraphQLMovie> {
+        return this.client.query({
+            query: gql`
+                ${baseMovieFragment}
+                query($title: String!) {
+                    movie(title: $title) {
+                        ...baseMovieFragment
+                        scenes(location: "Romania") {
+                            name
+                        }
+                    }
+                }
+            `,
+            variables: { title },
+        }).then(result => result.data.movie);
+    }
+
+    queryByTitleAllScenes(title: string): Promise<GraphQLMovie> {
+        return this.client.query({
+            query: gql`
+                ${baseMovieFragment}
+                query($title: String!) {
+                    movie(title: $title) {
+                        ...baseMovieFragment
+                        scenes {
+                            name
+                        }
                     }
                 }
             `,

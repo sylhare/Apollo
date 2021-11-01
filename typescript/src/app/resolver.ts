@@ -8,6 +8,7 @@ import { movie } from "../resolvers/query/Movie";
 import { director } from "../resolvers/movie/director";
 import { actors } from "../resolvers/movie/actors";
 import { movies } from "../resolvers/moviePerson/movies";
+import { scenes } from "../resolvers/movie/scenes";
 
 const resolvers = {
     Query: {
@@ -23,6 +24,7 @@ const resolvers = {
     Movie: {
         director,
         actors,
+        scenes,
     },
     MoviePerson: {
         movies

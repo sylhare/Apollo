@@ -13,7 +13,7 @@ export const movies: Movie[] = [
         ['Martin Sheen', 'Laurence Fishburne']),
     new Movie('Bram Stoker\'s Dracula', 'Francis Ford Coppola',
         ['Gary Oldman', 'Winona Ryder', 'Anthony Hopkins', 'Keanu Reeves'],
-        [new Scene('Romania', 'Bran Castle'), londonScene('street'), londonScene('harbour'), londonScene('countrySide')]),
+        [new Scene('Bran Castle', 'Romania'), londonScene('street'), londonScene('harbour'), londonScene('countrySide')]),
     new Movie('Surface', 'Leo Strozzi'),
 ]
 
