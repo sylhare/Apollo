@@ -39,3 +39,34 @@ export const nestedMovieFragment = gql`
         }
     }
 `;
+
+export const overlyNestedMovieFragment = gql`
+    fragment overlyNestedMovieFragment on Movie {
+        title
+        director {
+            movies {
+                title
+                director {
+                    movies {
+                        title
+                        director {
+                            movies {
+                                title
+                                director {
+                                    movies {
+                                        title
+                                        director {
+                                            movies {
+                                                title
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+`;

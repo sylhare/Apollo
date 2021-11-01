@@ -1,6 +1,6 @@
 import { TestClient } from "./TestClient";
 import { gql } from "apollo-server-express";
-import { movieFragment, nestedMovieFragment } from "./fragments";
+import { movieFragment, nestedMovieFragment, overlyNestedMovieFragment } from "./fragments";
 import { GraphQLMoviePerson } from "../../resolvers/movie/director";
 
 export interface GraphQLMovie {
@@ -37,6 +37,20 @@ export class MovieClient {
                 query($title: String!) {
                     movie(title: $title) {
                         ...nestedMovieFragment
+                    }
+                }
+            `,
+            variables: { title },
+        }).then(result => result.data.movie);
+    }
+
+    overlyNestedQueryByTitle(title: string): Promise<GraphQLMovie> {
+        return this.client.query({
+            query: gql`
+                ${overlyNestedMovieFragment}
+                query($title: String!) {
+                    movie(title: $title) {
+                        ...overlyNestedMovieFragment
                     }
                 }
             `,

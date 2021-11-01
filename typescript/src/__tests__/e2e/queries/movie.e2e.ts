@@ -72,6 +72,11 @@ describe("Movie", () => {
         });
     });
 
+    it("rejects overly nested queries for movie", async () => {
+        const client = new TestClient(new URL(app.graphQlPath()));
+        await expect(client.movie.overlyNestedQueryByTitle('Matrix')).rejects.toMatch("exceeds maximum operation depth of")
+    });
+
     it("returns null when the movie does not exist", async () => {
         const client = new TestClient(new URL(app.graphQlPath()));
         await expect(client.movie.queryByTitle('qwerty')).resolves.toBeNull();

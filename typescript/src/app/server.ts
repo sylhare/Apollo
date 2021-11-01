@@ -1,6 +1,7 @@
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import { createServer, Server } from "http";
+import depthLimit from 'graphql-depth-limit'
 import compression from "compression";
 import cors from "cors";
 import helmet from "helmet";
@@ -8,7 +9,7 @@ import { serviceSchema } from "./schemas";
 
 export class Application {
     readonly app: express.Application = express();
-    readonly apolloServer: ApolloServer = new ApolloServer({ schema: serviceSchema });
+    readonly apolloServer: ApolloServer = new ApolloServer({ schema: serviceSchema, validationRules: [ depthLimit(6) ] });
     private httpServer: Server;
     private applicationPort: number = Number(process.env.PORT) || 3000;
 
