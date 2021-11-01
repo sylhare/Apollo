@@ -1,11 +1,19 @@
 import Movie from "../models/movie/Movie";
 import { MoviePerson, Role } from "../models/movie/MoviePerson";
+import { Scene } from "../models/movie/Scene";
+
+const londonScene = (name: string) => new Scene(name, 'London')
 
 export const movies: Movie[] = [
-    new Movie('Matrix', 'The Wachowskis', ['Keanu Reeves', 'Carrie-Anne Moss', 'Laurence Fishburne']),
-    new Movie('John Wick', 'Chad Stahelski', ['Keanu Reeves']),
-    new Movie('Apocalypse Now', 'Francis Ford Coppola', ['Martin Sheen', 'Laurence Fishburne']),
-    new Movie('Bram Stoker\'s Dracula', 'Francis Ford Coppola', ['Gary Oldman', 'Winona Ryder', 'Anthony Hopkins', 'Keanu Reeves']),
+    new Movie('Matrix', 'The Wachowskis',
+        ['Keanu Reeves', 'Carrie-Anne Moss', 'Laurence Fishburne']),
+    new Movie('John Wick', 'Chad Stahelski',
+        ['Keanu Reeves']),
+    new Movie('Apocalypse Now', 'Francis Ford Coppola',
+        ['Martin Sheen', 'Laurence Fishburne']),
+    new Movie('Bram Stoker\'s Dracula', 'Francis Ford Coppola',
+        ['Gary Oldman', 'Winona Ryder', 'Anthony Hopkins', 'Keanu Reeves'],
+        [new Scene('Romania', 'Bran Castle'), londonScene('street'), londonScene('harbour'), londonScene('countrySide')]),
     new Movie('Surface', 'Leo Strozzi'),
 ]
 

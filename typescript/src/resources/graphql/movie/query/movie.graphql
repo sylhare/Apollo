@@ -6,6 +6,12 @@ type Movie {
     title: String!
     director: MoviePerson!
     actors: [MoviePerson]!
+    scenes(location: String): [Scene]!
+}
+
+type Scene {
+    name: String!
+    location: String
 }
 
 type MoviePerson {
