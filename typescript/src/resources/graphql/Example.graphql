@@ -1,3 +1,6 @@
+# Custom scalar type
+scalar Odd
+
 type Query {
     getAllUsers: [User]
     example: Example
