@@ -22,6 +22,7 @@ type User {
 input ExampleInput {
     exampleId: ID!
     newName: String!
+    number: Odd
 }
 
 type ExamplePayload {

@@ -4,21 +4,28 @@ import Example from "../../models/Example";
 interface ExampleInput {
     exampleId: string
     newName: string
+    number?: number
 }
-
-interface ExampleError extends UserError {}
 
 interface ExamplePayload {
     example: Example | null
-    userError: ExampleError[]
+    userError?: UserError[]
 }
 
-// Resolver for mutation example, which will always return error(s)
 export async function exampleMutation(parent: null, { input }: { input: ExampleInput }): Promise<ExamplePayload> {
+    if (input.number) {
+        return { example: new Example(input.newName, input.exampleId) }
+    } else {
+        return { example: null, userError: errorsFrom(input) };
+    }
+}
+
+function errorsFrom(input: ExampleInput): UserError[] {
     const userErrors: UserError[] = [new InvalidNameError(input.newName, ['input', 'newName'])]
     if (input.newName.length > 5) {
         userErrors.push(new NameTooLongError(['input', 'newName']));
     }
 
-    return { example: null, userError: userErrors }
+    return userErrors
 }
+

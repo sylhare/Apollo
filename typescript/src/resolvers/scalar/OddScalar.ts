@@ -8,7 +8,7 @@ function validate(value: number) {
     throw new UserInputError("Provided value is not an odd integer");
 }
 
-export const Odd = new GraphQLScalarType({
+export const OddScalar = new GraphQLScalarType({
     name: 'Odd',
     description: 'Odd custom scalar type',
     serialize: validate,

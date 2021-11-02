@@ -9,6 +9,7 @@ import { director } from "../resolvers/movie/director";
 import { actors } from "../resolvers/movie/actors";
 import { movies } from "../resolvers/moviePerson/movies";
 import { scenes } from "../resolvers/movie/scenes";
+import { OddScalar } from "../resolvers/scalar/OddScalar";
 
 const resolvers = {
     Query: {
@@ -32,7 +33,8 @@ const resolvers = {
     Mutation: {
         createProduct: async (_: any, { product }: { product: ProductInput }) => createProduct(product),
         exampleMutation
-    }
+    },
+    Odd: OddScalar
 };
 
 export default resolvers;
