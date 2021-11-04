@@ -11,5 +11,5 @@ export function getBook(title: string): Promise<Book | null> {
 }
 
 export function lotr(): Promise<Book> {
-    return Promise.resolve({ title: "The lord of the rings", author: { name: "J.R.R. Tolkien"} })
+    return Promise.resolve({ title: "The lord of the rings", author: { name: "J.R.R. Tolkien" } })
 }

@@ -1,6 +1,6 @@
 import { Application } from "../../../app/server";
 import { TestClient } from "../TestClient";
-import { gql, UserInputError } from "apollo-server-express";
+import { gql } from "apollo-server-express";
 
 describe("Example", () => {
     const app = new Application();

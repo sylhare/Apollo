@@ -28,4 +28,3 @@ function errorsFrom(input: ExampleInput): UserError[] {
 
     return userErrors
 }
-

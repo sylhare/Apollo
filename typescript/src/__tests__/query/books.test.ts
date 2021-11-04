@@ -1,7 +1,6 @@
 import { graphql } from "graphql";
 import { serviceSchema } from "../../app/schemas";
 import { Book } from "../../models/BookType";
-import { Application } from "../../app/server";
 import { ApolloServer } from "apollo-server-express";
 
 describe("Books", () => {

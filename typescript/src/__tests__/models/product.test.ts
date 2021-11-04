@@ -1,4 +1,4 @@
-import {Product, randomProduct} from "../../models/Product";
+import { Product, randomProduct } from "../../models/Product";
 
 describe("Product Class", () => {
 
