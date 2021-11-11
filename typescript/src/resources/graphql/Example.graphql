@@ -30,19 +30,19 @@ type ExamplePayload {
     userError: [ExampleError]
 }
 
-interface UserError {
+interface UserInputError {
     message: String!
     path: [String!]
 }
 
 union ExampleError = InvalidNameError | NameTooLongError
 
-type InvalidNameError {
+type InvalidNameError implements UserInputError {
     message: String!
     path: [String!]
 }
 
-type NameTooLongError {
+type NameTooLongError implements UserInputError {
     message: String!
     path: [String!]
 }

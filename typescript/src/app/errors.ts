@@ -1,6 +1,6 @@
 import { ApolloError } from "apollo-server-express";
 
-export class UserError {
+export class UserInputError {
     public readonly message: string;
     public readonly path: string[];
     public readonly __typename: string;
@@ -18,13 +18,13 @@ export class ProductCreationError extends ApolloError {
     }
 }
 
-export class InvalidNameError extends UserError {
+export class InvalidNameError extends UserInputError {
     constructor(name: String, path: string[]) {
         super(`Invalid name ${name} was provided`, path);
     }
 }
 
-export class NameTooLongError extends UserError {
+export class NameTooLongError extends UserInputError {
     constructor(path: string[]) {
         super(`Name too long error`, path);
     }
