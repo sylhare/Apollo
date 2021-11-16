@@ -16,9 +16,9 @@ describe("Products Queries", () => {
             const receivedProducts: ProductReference[] = result.data.products;
             expect(receivedProducts.length).toBeTruthy()
             expect(receivedProducts).toMatchObject([
-                { id: 303, name: "Product 303" },
+                { id: 303, name: "Product" },
                 { id: expect.any(Number), name: expect.any(String) },
-                { id: 1, name: "Product 1" },
+                { id: 1, name: "Product" },
                 { id: expect.any(Number), name: expect.any(String) }
             ])
         });
@@ -36,7 +36,7 @@ describe("Products Queries", () => {
         return graphql(serviceSchema, query).then((result: any) => {
             const receivedProduct: ProductReference = result.data.product;
             expect(receivedProduct.id).toBe(1)
-            expect(receivedProduct.name).toBe("Product 1")
+            expect(receivedProduct.name).toBe("Product")
         });
     });
 });

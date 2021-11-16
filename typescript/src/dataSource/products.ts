@@ -2,9 +2,9 @@ import { Product, randomProduct } from "../models/Product";
 import { ProductReference } from "../models/ProductReference";
 
 export let products: ProductReference[] = [
-    new Product(303),
+    new Product({ id: 303 }),
     randomProduct(),
-    new Product(1),
+    new Product({ id: 1 }),
     randomProduct()
 ];
 

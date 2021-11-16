@@ -1,14 +1,12 @@
 import { ProductReference } from "./ProductReference";
 
 export class Product implements ProductReference {
-    id: number;
-    name: string;
-    description: string;
+    id: number = 0;
+    name: string =  "Product";
+    description: string = "Description";
 
-    constructor(id: number, name?: string, description?: string | null) {
-        this.id = id;
-        this.name = name || "Product " + id;
-        this.description = description || "Description"
+    constructor(product?: Partial<Product>) {
+        Object.assign(this, product);
     }
 
     toString() {
@@ -17,5 +15,5 @@ export class Product implements ProductReference {
 }
 
 export function randomProduct() {
-    return new Product(Math.floor(Math.random() * 100))
+    return new Product({ id: Math.floor(Math.random() * 100) })
 }
