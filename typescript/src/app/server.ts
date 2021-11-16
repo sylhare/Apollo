@@ -6,10 +6,15 @@ import compression from "compression";
 import cors from "cors";
 import helmet from "helmet";
 import { serviceSchema } from "./schemas";
+import { dataSources } from "../dataSource";
 
 export class Application {
     readonly app: express.Application = express();
-    readonly apolloServer: ApolloServer = new ApolloServer({ schema: serviceSchema, validationRules: [depthLimit(6)] });
+    readonly apolloServer: ApolloServer = new ApolloServer({
+        schema: serviceSchema,
+        dataSources: dataSources,
+        context: ({ req }) => ({}), // For HTTP context
+        validationRules: [depthLimit(6)] });
     private httpServer: Server;
     private applicationPort: number = Number(process.env.PORT) || 3000;
 

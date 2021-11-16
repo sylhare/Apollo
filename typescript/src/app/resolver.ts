@@ -10,6 +10,7 @@ import { actors } from "../resolvers/movie/actors";
 import { movies } from "../resolvers/moviePerson/movies";
 import { scenes } from "../resolvers/movie/scenes";
 import { OddScalar } from "../resolvers/scalar/OddScalar";
+import { addBook } from "../resolvers/mutations/addBook/addBook";
 
 const resolvers = {
     Query: {
@@ -32,7 +33,8 @@ const resolvers = {
     },
     Mutation: {
         createProduct: async (_: any, { product }: { product: ProductInput }) => createProduct(product),
-        exampleMutation
+        exampleMutation,
+        addBook
     },
     Odd: OddScalar
 };
