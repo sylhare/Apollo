@@ -1,4 +1,4 @@
-import { InvalidNameError, NameTooLongError, UserInputError } from "../../app/errors";
+import { InvalidNameError, NameTooLongError, UserError } from "../../app/errors";
 import Example from "../../models/Example";
 
 interface ExampleInput {
@@ -9,7 +9,7 @@ interface ExampleInput {
 
 interface ExamplePayload {
     example: Example | null
-    userError?: UserInputError[]
+    userError?: UserError[]
 }
 
 export async function exampleMutation(parent: null, { input }: { input: ExampleInput }): Promise<ExamplePayload> {
@@ -20,8 +20,8 @@ export async function exampleMutation(parent: null, { input }: { input: ExampleI
     }
 }
 
-function errorsFrom(input: ExampleInput): UserInputError[] {
-    const userErrors: UserInputError[] = [new InvalidNameError(input.newName, ['input', 'newName'])]
+function errorsFrom(input: ExampleInput): UserError[] {
+    const userErrors: UserError[] = [new InvalidNameError(input.newName, ['input', 'newName'])]
     if (input.newName.length > 5) {
         userErrors.push(new NameTooLongError(['input', 'newName']));
     }
