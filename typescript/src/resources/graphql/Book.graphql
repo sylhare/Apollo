@@ -5,6 +5,59 @@ extend type Query {
     lotr: Book
 }
 
+extend type Mutation {
+    addBook(input: AddBookInput): AddBookPayload
+    addAuthor(input: AddAuthorInput): AddAuthorResult
+}
+
+input AddBookInput {
+    title: String!
+    authorName: String!
+}
+
+type AddBookPayload {
+    book: Book
+    userError: [AddBookError]
+}
+
+union AddBookError =  InvalidBookTitle | InvalidAuthorName | DuplicatedBookError
+
+type DuplicatedBookError implements UserError {
+    message: String!
+    field: [String!]
+}
+
+type InvalidBookTitle implements UserError {
+    message: String!
+    field: [String!]
+}
+
+input AddAuthorInput {
+    name: String!
+    bookTitles: [String!]!
+}
+
+union AddAuthorResult = AuthorCreated | InvalidAuthorName | InvalidAuthorBooks
+
+type AuthorCreated {
+    author: Author!
+}
+
+type InvalidAuthorBooks implements UserError {
+    message: String!
+    field: [String!]
+}
+
+type InvalidAuthorName implements UserError {
+    message: String!
+    field: [String!]
+}
+
+interface UserError {
+    message: String! # The error message.
+    field: [String!] # The path to the input field that caused the error.
+}
+
 type Book {
     title: String!
     author: Author
