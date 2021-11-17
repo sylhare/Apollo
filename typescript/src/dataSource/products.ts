@@ -1,5 +1,5 @@
-import { Product, randomProduct } from "../models/Product";
-import { ProductReference } from "../models/ProductReference";
+import { Product, randomProduct } from '../models/Product';
+import { ProductReference } from '../models/ProductReference';
 
 export let products: ProductReference[] = [
     new Product({ id: 303 }),
@@ -9,5 +9,5 @@ export let products: ProductReference[] = [
 ];
 
 export function addProduct(product: ProductReference) {
-    products = products.concat(product)
+    products = products.concat(product);
 }

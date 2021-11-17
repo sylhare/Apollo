@@ -11,6 +11,6 @@ export class MoviePerson {
     constructor(name: string, role: Role, movieNames: string[] = []) {
         this.name = name;
         this.role = role;
-        this.movies = movieNames
+        this.movies = movieNames;
     }
 }

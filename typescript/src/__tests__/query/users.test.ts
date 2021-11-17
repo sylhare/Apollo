@@ -1,8 +1,8 @@
-import { graphql } from "graphql";
-import { serviceSchema } from "../../app/schemas";
+import { graphql } from 'graphql';
+import { serviceSchema } from '../../app/schemas';
 
-describe("User Schema", () => {
-    test("Test getAllUsers query", async () => {
+describe('User Schema', () => {
+    test('Test getAllUsers query', async () => {
         const query = `
         {
             user: getAllUsers {

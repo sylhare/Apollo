@@ -1,4 +1,4 @@
-import { AddBookError } from "./interfaces";
+import { AddBookError } from './interfaces';
 
 class CustomUserError implements AddBookError {
     private __typename: string;
@@ -10,15 +10,14 @@ class CustomUserError implements AddBookError {
     }
 }
 
-
 export class InvalidBookTitle extends CustomUserError {
     constructor() {
-        super("Invalid book title", ["input", "title"]);
+        super('Invalid book title', ['input', 'title']);
     }
 }
 
 export class InvalidAuthorName extends CustomUserError {
     constructor() {
-        super("Invalid author name", ["input", "authorName"]);
+        super('Invalid author name', ['input', 'authorName']);
     }
 }

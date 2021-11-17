@@ -1,5 +1,5 @@
-import Movie from "../../models/movie/Movie";
-import { movies } from "../../dataSource/movies";
+import Movie from '../../models/movie/Movie';
+import { movies } from '../../dataSource/movies';
 
 // Apollo expects an object as parameter
 interface MovieInput {

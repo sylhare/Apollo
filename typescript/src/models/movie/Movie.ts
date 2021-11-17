@@ -1,4 +1,4 @@
-import { Scene } from "./Scene";
+import { Scene } from './Scene';
 
 export default class Movie {
     readonly title: string;
@@ -10,6 +10,6 @@ export default class Movie {
         this.title = title;
         this.directorName = director;
         this.actorsName = actors;
-        this.scenes = scenes
+        this.scenes = scenes;
     }
 }

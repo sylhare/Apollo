@@ -1,4 +1,4 @@
-import { ApolloError } from "apollo-server-express";
+import { ApolloError } from 'apollo-server-express';
 
 export class UserError {
     public readonly message: string;
@@ -26,6 +26,6 @@ export class InvalidNameError extends UserError {
 
 export class NameTooLongError extends UserError {
     constructor(path: string[]) {
-        super(`Name too long error`, path);
+        super('Name too long error', path);
     }
 }

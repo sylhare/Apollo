@@ -1,8 +1,8 @@
-import { graphql } from "graphql";
-import { serviceSchema } from "../../app/schemas";
-import { ProductCreationError } from "../../app/errors";
+import { graphql } from 'graphql';
+import { serviceSchema } from '../../app/schemas';
+import { ProductCreationError } from '../../app/errors';
 
-describe("Products Mutation", () => {
+describe('Products Mutation', () => {
     const CREATE_PRODUCT = `
             mutation {
                 createProduct(product: { name: "Product", description: "description" }) {
@@ -17,14 +17,14 @@ describe("Products Mutation", () => {
                 }
             }        
         `;
-    test("Create Product", async () =>
+    test('Create Product', async () =>
         graphql(serviceSchema, CREATE_PRODUCT).then((result: any) => expect(result.data.createProduct)
             .toMatchObject({ result: 'success' })
         ));
 
-    test("Create Product", async () =>
+    test('Create Product', async () =>
         expect(graphql(serviceSchema, CREATE_ERROR_PRODUCT)).resolves.toMatchObject({
-            data: { "createProduct": null },
+            data: { 'createProduct': null },
             errors: [new ProductCreationError('business')]
         })
     );

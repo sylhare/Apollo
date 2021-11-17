@@ -1,12 +1,12 @@
-import express from "express";
-import { ApolloServer } from "apollo-server-express";
-import { createServer, Server } from "http";
-import depthLimit from 'graphql-depth-limit'
-import compression from "compression";
-import cors from "cors";
-import helmet from "helmet";
-import { serviceSchema } from "./schemas";
-import { dataSources } from "../dataSource";
+import express from 'express';
+import { ApolloServer } from 'apollo-server-express';
+import { createServer, Server } from 'http';
+import depthLimit from 'graphql-depth-limit';
+import compression from 'compression';
+import cors from 'cors';
+import helmet from 'helmet';
+import { serviceSchema } from './schemas';
+import { dataSources } from '../dataSource';
 
 export class Application {
     readonly app: express.Application = express();
@@ -20,7 +20,7 @@ export class Application {
 
     constructor() {
         this.setUpApp();
-        this.apolloServer.applyMiddleware({ app: this.app, path: "/graphql" });
+        this.apolloServer.applyMiddleware({ app: this.app, path: '/graphql' });
         this.httpServer = createServer(this.app);
     }
 
@@ -36,7 +36,7 @@ export class Application {
     }
 
     graphQlPath() {
-        return `http://localhost:${this.applicationPort}/graphql`
+        return `http://localhost:${this.applicationPort}/graphql`;
     }
 
     private setUpApp() {

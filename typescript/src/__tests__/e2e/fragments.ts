@@ -1,4 +1,4 @@
-import { gql } from "apollo-server-express";
+import { gql } from 'apollo-server-express';
 
 export const baseMovieFragment = gql`
     fragment baseMovieFragment on Movie {

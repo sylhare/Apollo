@@ -1,19 +1,19 @@
-import { Application } from "../../../app/server";
-import { TestClient } from "../TestClient";
-import { gql } from "apollo-server-express";
-import { InvalidAuthorName, InvalidBookTitle } from "../../../resolvers/mutations/addBook/errors";
+import { Application } from '../../../app/server';
+import { TestClient } from '../TestClient';
+import { gql } from 'apollo-server-express';
+import { InvalidAuthorName, InvalidBookTitle } from '../../../resolvers/mutations/addBook/errors';
 
-describe("addBook", () => {
+describe('addBook', () => {
     const app = new Application();
     let client: TestClient;
 
     beforeAll(async () => {
-        app.start(4444)
+        app.start(4444);
         client = new TestClient(new URL(app.graphQlPath()));
     });
     afterAll(async () => app.stop());
 
-    it("creates a addBook mutation", async () => {
+    it('creates a addBook mutation', async () => {
         const result = await client.mutate({
             mutation: gql`
                 mutation {
@@ -25,17 +25,17 @@ describe("addBook", () => {
         }).then(result => result.data.addBook);
         expect(result).toMatchObject({
             book: {
-                __typename: "Book",
+                __typename: 'Book',
                 author: {
-                    __typename: "Author",
-                    name: "author",
+                    __typename: 'Author',
+                    name: 'author',
                 },
-                title: "book",
+                title: 'book',
             }
-        })
+        });
     });
 
-    it("generates user errors", async () => {
+    it('generates user errors', async () => {
         const result = await client.mutate({
             mutation: gql`
                 mutation {
@@ -54,10 +54,10 @@ describe("addBook", () => {
         expect(result).toMatchObject({
             book: null,
             userError: [{
-                message: "Invalid book title"
+                message: 'Invalid book title'
             }, {
-                message: "Invalid author name"
+                message: 'Invalid author name'
             }]
-        })
+        });
     });
 });

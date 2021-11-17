@@ -1,7 +1,7 @@
-import { gql } from "apollo-server-express";
+import { gql } from 'apollo-server-express';
 import { DocumentNode } from 'graphql';
-import { readdirSync, readFileSync, statSync } from "fs";
-import { join } from "path";
+import { readdirSync, readFileSync, statSync } from 'fs';
+import { join } from 'path';
 
 function listFiles(directory: string): string[] {
     return readdirSync(directory)

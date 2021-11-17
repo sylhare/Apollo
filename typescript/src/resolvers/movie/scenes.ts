@@ -1,5 +1,5 @@
-import Movie from "../../models/movie/Movie";
-import { movies } from "../../dataSource/movies";
+import Movie from '../../models/movie/Movie';
+import { movies } from '../../dataSource/movies';
 
 interface GraphQLScene {
     name: string
@@ -7,6 +7,6 @@ interface GraphQLScene {
 }
 
 export async function scenes(parent: Movie, { location }: { location: string | null }): Promise<GraphQLScene[]> {
-    const movie: Movie = movies.find(it => it.title === parent.title)!
-    return location ? movie.scenes.filter(it => it.location === location) : movie.scenes
+    const movie: Movie = movies.find(it => it.title === parent.title)!;
+    return location ? movie.scenes.filter(it => it.location === location) : movie.scenes;
 }

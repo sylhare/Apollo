@@ -1,6 +1,6 @@
-import { Kind } from "graphql";
-import { OddScalar } from "../../resolvers/scalar/OddScalar";
-import { UserInputError } from "apollo-server-express";
+import { Kind } from 'graphql';
+import { OddScalar } from '../../resolvers/scalar/OddScalar';
+import { UserInputError } from 'apollo-server-express';
 
 describe('Odd Scalar', () => {
     const odds = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19];
@@ -26,11 +26,11 @@ describe('Odd Scalar', () => {
 
     it('throws an error on other kind', () =>
         expect(() =>
-            OddScalar.parseLiteral({ kind: Kind.STRING, value: '1', }, null,),
+            OddScalar.parseLiteral({ kind: Kind.STRING, value: '1' }, null),
         ).toThrow(UserInputError));
 
     it('throws an error on other value', () =>
         expect(() =>
-            OddScalar.parseLiteral({ kind: Kind.INT, value: 'a', }, null,),
+            OddScalar.parseLiteral({ kind: Kind.INT, value: 'a' }, null),
         ).toThrow(UserInputError));
 });

@@ -1,5 +1,5 @@
-import { Book } from "../models/BookType";
-import { DataSource } from "./index";
+import { Book } from '../models/BookType';
+import { DataSource } from './index';
 
 const books: Book[] = [
     {
@@ -35,16 +35,16 @@ const books: Book[] = [
 ];
 
 export function retrieveBooks(): Book[] {
-    return books
+    return books;
 }
 
 export function retrieveBook(title: string): Book | null {
-    return books.find(book => book.title === title) ?? null
+    return books.find(book => book.title === title) ?? null;
 }
 
 export class BookDataSource<TContext> extends DataSource<TContext> {
 
     createBook(title: string, author: string): Book {
-        return { title: title, author: { name: author } }
+        return { title: title, author: { name: author } };
     }
 }

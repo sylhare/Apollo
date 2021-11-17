@@ -1,6 +1,6 @@
-import Movie from "../../models/movie/Movie";
-import { moviePersons } from "../../dataSource/movies";
-import { Role } from "../../models/movie/MoviePerson";
+import Movie from '../../models/movie/Movie';
+import { moviePersons } from '../../dataSource/movies';
+import { Role } from '../../models/movie/MoviePerson';
 
 export interface GraphQLMoviePerson {
     name: string

@@ -10,7 +10,7 @@ import {
     OperationVariables,
     QueryOptions,
 } from '@apollo/client/core';
-import { MovieClient } from "./MovieClient";
+import { MovieClient } from './MovieClient';
 
 export class TestClient extends ApolloClient<NormalizedCacheObject> {
     readonly movie: MovieClient = new MovieClient(this);

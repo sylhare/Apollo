@@ -1,7 +1,6 @@
-import { AppContext } from "../../../dataSource";
-import { AddBookError, AddBookInput, AddBookPayload } from "./interfaces";
-import { validateInput } from "./validations";
-
+import { AppContext } from '../../../dataSource';
+import { AddBookError, AddBookInput, AddBookPayload } from './interfaces';
+import { validateInput } from './validations';
 
 export async function addBook(
     parent: null,

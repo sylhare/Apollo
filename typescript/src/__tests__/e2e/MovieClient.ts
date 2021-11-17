@@ -1,7 +1,7 @@
-import { TestClient } from "./TestClient";
-import { gql } from "apollo-server-express";
-import { baseMovieFragment, movieFragment, nestedMovieFragment, overlyNestedMovieFragment } from "./fragments";
-import { GraphQLMoviePerson } from "../../resolvers/movie/director";
+import { TestClient } from './TestClient';
+import { gql } from 'apollo-server-express';
+import { baseMovieFragment, movieFragment, nestedMovieFragment, overlyNestedMovieFragment } from './fragments';
+import { GraphQLMoviePerson } from '../../resolvers/movie/director';
 
 export interface GraphQLMovie {
     title: string
