@@ -1,7 +1,9 @@
 import { BookDataSource } from './books';
 
 export type AppContext = Context<AppDataSources>
-export abstract class DataSource<TContext> {}
+
+export abstract class DataSource<TContext> {
+}
 
 interface Context<TDataSources extends object> {
     dataSources: TDataSources;

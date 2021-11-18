@@ -14,7 +14,8 @@ export class Application {
         schema: serviceSchema,
         dataSources: dataSources,
         context: ({ req }) => ({}), // For HTTP context
-        validationRules: [depthLimit(6)] });
+        validationRules: [depthLimit(6)]
+    });
     private httpServer: Server;
     private applicationPort: number = Number(process.env.PORT) || 3000;
 

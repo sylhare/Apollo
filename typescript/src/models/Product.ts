@@ -2,7 +2,7 @@ import { ProductReference } from './ProductReference';
 
 export class Product implements ProductReference {
     id: number = 0;
-    name: string =  'Product';
+    name: string = 'Product';
     description: string = 'Description';
 
     constructor(product?: Partial<Product>) {

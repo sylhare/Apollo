@@ -1,7 +1,6 @@
 import { Application } from '../../../app/server';
 import { TestClient } from '../TestClient';
 import { gql } from 'apollo-server-express';
-import { InvalidAuthorName, InvalidBookTitle } from '../../../resolvers/mutations/addBook/errors';
 
 describe('addBook', () => {
     const app = new Application();
