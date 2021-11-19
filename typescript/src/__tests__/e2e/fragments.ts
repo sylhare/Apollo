@@ -1,10 +1,10 @@
-import { gql } from 'apollo-server-express';
+import { gql } from 'apollo-server-express'
 
 export const baseMovieFragment = gql`
     fragment baseMovieFragment on Movie {
         title
     }
-`;
+`
 
 export const movieFragment = gql`
     ${baseMovieFragment}
@@ -25,7 +25,7 @@ export const movieFragment = gql`
             }
         }
     }
-`;
+`
 
 export const nestedMovieFragment = gql`
     ${baseMovieFragment}
@@ -46,7 +46,7 @@ export const nestedMovieFragment = gql`
             }
         }
     }
-`;
+`
 
 export const overlyNestedMovieFragment = gql`
     fragment overlyNestedMovieFragment on Movie {
@@ -77,4 +77,4 @@ export const overlyNestedMovieFragment = gql`
             }
         }
     }
-`;
+`

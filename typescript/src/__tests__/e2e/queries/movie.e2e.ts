@@ -1,19 +1,19 @@
-import { Application } from '../../../app/server';
-import { TestClient } from '../TestClient';
-import { Role } from '../../../models/movie/MoviePerson';
+import { Application } from '../../../app/server'
+import { TestClient } from '../TestClient'
+import { Role } from '../../../models/movie/MoviePerson'
 
 describe('Movie', () => {
-    const app = new Application();
+    const app = new Application()
     const matrixDirector = {
         name: 'The Wachowskis',
         role: Role.DIRECTOR,
-    };
+    }
 
-    beforeAll(async () => app.start(2222));
-    afterAll(async () => app.stop());
+    beforeAll(async () => app.start(2222))
+    afterAll(async () => app.stop())
 
     it('queries existing movie', async () => {
-        const client = new TestClient(new URL(app.graphQlPath()));
+        const client = new TestClient(new URL(app.graphQlPath()))
         await expect(client.movie.queryByTitle('Matrix')).resolves.toMatchObject({
             title: 'Matrix',
             director: {
@@ -50,11 +50,11 @@ describe('Movie', () => {
                         title: 'Apocalypse Now',
                     }]
                 }]
-        });
-    });
+        })
+    })
 
     it('queries nested objects in movie', async () => {
-        const client = new TestClient(new URL(app.graphQlPath()));
+        const client = new TestClient(new URL(app.graphQlPath()))
         await expect(client.movie.nestedQueryByTitle('Matrix')).resolves.toMatchObject({
             title: 'Matrix',
             director: {
@@ -69,18 +69,18 @@ describe('Movie', () => {
                     }
                 }]
             }
-        });
-    });
+        })
+    })
 
     it('queries some scenes in movie', async () => {
-        const client = new TestClient(new URL(app.graphQlPath()));
+        const client = new TestClient(new URL(app.graphQlPath()))
         await expect(client.movie.queryByTitleFilterScenes('Bram Stoker\'s Dracula')).resolves.toMatchObject({
             scenes: [{ __typename: 'Scene', name: 'Bran Castle' }]
-        });
-    });
+        })
+    })
 
     it('queries all scenes in movie', async () => {
-        const client = new TestClient(new URL(app.graphQlPath()));
+        const client = new TestClient(new URL(app.graphQlPath()))
         await expect(client.movie.queryByTitleAllScenes('Bram Stoker\'s Dracula')).resolves.toMatchObject({
             'scenes': [
                 { __typename: 'Scene', name: 'Bran Castle' },
@@ -88,16 +88,16 @@ describe('Movie', () => {
                 { __typename: 'Scene', name: 'harbour' },
                 { __typename: 'Scene', name: 'countrySide' },
             ],
-        });
-    });
+        })
+    })
 
     it('rejects overly nested queries for movie', async () => {
-        const client = new TestClient(new URL(app.graphQlPath()));
-        await expect(client.movie.overlyNestedQueryByTitle('Matrix')).rejects.toMatch('exceeds maximum operation depth of');
-    });
+        const client = new TestClient(new URL(app.graphQlPath()))
+        await expect(client.movie.overlyNestedQueryByTitle('Matrix')).rejects.toMatch('exceeds maximum operation depth of')
+    })
 
     it('returns null when the movie does not exist', async () => {
-        const client = new TestClient(new URL(app.graphQlPath()));
-        await expect(client.movie.queryByTitle('qwerty')).resolves.toBeNull();
-    });
-});
+        const client = new TestClient(new URL(app.graphQlPath()))
+        await expect(client.movie.queryByTitle('qwerty')).resolves.toBeNull()
+    })
+})

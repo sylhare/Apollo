@@ -1,8 +1,8 @@
-import Movie from '../models/movie/Movie';
-import { MoviePerson, Role } from '../models/movie/MoviePerson';
-import { Scene } from '../models/movie/Scene';
+import Movie from '../models/movie/Movie'
+import { MoviePerson, Role } from '../models/movie/MoviePerson'
+import { Scene } from '../models/movie/Scene'
 
-const londonScene = (name: string) => new Scene(name, 'London');
+const londonScene = (name: string) => new Scene(name, 'London')
 
 export const movies: Movie[] = [
     new Movie('Matrix', 'The Wachowskis',
@@ -15,7 +15,7 @@ export const movies: Movie[] = [
         ['Gary Oldman', 'Winona Ryder', 'Anthony Hopkins', 'Keanu Reeves'],
         [new Scene('Bran Castle', 'Romania'), londonScene('street'), londonScene('harbour'), londonScene('countrySide')]),
     new Movie('Surface', 'Leo Strozzi'),
-];
+]
 
 export const moviePersons: MoviePerson[] = [
     new MoviePerson('The Wachowskis', Role.DIRECTOR, ['Matrix']),
@@ -30,4 +30,4 @@ export const moviePersons: MoviePerson[] = [
     new MoviePerson('Anthony Hopkins', Role.ACTOR, ['Bram Stoker\'s Dracula']),
     new MoviePerson('Leo Strozzi', Role.DIRECTOR, ['Surface']),
     new MoviePerson('Joe', Role.DIRECTOR)
-];
+]

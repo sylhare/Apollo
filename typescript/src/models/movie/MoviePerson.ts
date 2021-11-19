@@ -4,13 +4,13 @@ export enum Role {
 }
 
 export class MoviePerson {
-    readonly name: string;
-    readonly role: Role;
-    movies: string[] = [];
+    readonly name: string
+    readonly role: Role
+    movies: string[] = []
 
     constructor(name: string, role: Role, movieNames: string[] = []) {
-        this.name = name;
-        this.role = role;
-        this.movies = movieNames;
+        this.name = name
+        this.role = role
+        this.movies = movieNames
     }
 }

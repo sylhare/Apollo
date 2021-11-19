@@ -1,4 +1,4 @@
-import { BookDataSource } from './books';
+import { BookDataSource } from './books'
 
 export type AppContext = Context<AppDataSources>
 
@@ -21,5 +21,5 @@ export type DataSources<TContext> = {
 export function dataSources<TContext>(): DataSources<TContext> {
     return {
         books: new BookDataSource<TContext>()
-    };
+    }
 }

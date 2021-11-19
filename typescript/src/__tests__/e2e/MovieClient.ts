@@ -1,7 +1,7 @@
-import { TestClient } from './TestClient';
-import { gql } from 'apollo-server-express';
-import { baseMovieFragment, movieFragment, nestedMovieFragment, overlyNestedMovieFragment } from './fragments';
-import { GraphQLMoviePerson } from '../../resolvers/movie/director';
+import { TestClient } from './TestClient'
+import { gql } from 'apollo-server-express'
+import { baseMovieFragment, movieFragment, nestedMovieFragment, overlyNestedMovieFragment } from './fragments'
+import { GraphQLMoviePerson } from '../../resolvers/movie/director'
 
 export interface GraphQLMovie {
     title: string
@@ -10,10 +10,10 @@ export interface GraphQLMovie {
 }
 
 export class MovieClient {
-    readonly client: TestClient;
+    readonly client: TestClient
 
     constructor(client: TestClient) {
-        this.client = client;
+        this.client = client
     }
 
     queryByTitle(title: string): Promise<GraphQLMovie> {
@@ -27,7 +27,7 @@ export class MovieClient {
                 }
             `,
             variables: { title },
-        }).then(result => result.data.movie);
+        }).then(result => result.data.movie)
     }
 
     queryByTitleFilterScenes(title: string): Promise<GraphQLMovie> {
@@ -44,7 +44,7 @@ export class MovieClient {
                 }
             `,
             variables: { title },
-        }).then(result => result.data.movie);
+        }).then(result => result.data.movie)
     }
 
     queryByTitleAllScenes(title: string): Promise<GraphQLMovie> {
@@ -61,7 +61,7 @@ export class MovieClient {
                 }
             `,
             variables: { title },
-        }).then(result => result.data.movie);
+        }).then(result => result.data.movie)
     }
 
     nestedQueryByTitle(title: string): Promise<GraphQLMovie> {
@@ -75,7 +75,7 @@ export class MovieClient {
                 }
             `,
             variables: { title },
-        }).then(result => result.data.movie);
+        }).then(result => result.data.movie)
     }
 
     overlyNestedQueryByTitle(title: string): Promise<GraphQLMovie> {
@@ -89,6 +89,6 @@ export class MovieClient {
                 }
             `,
             variables: { title },
-        }).then(result => result.data.movie);
+        }).then(result => result.data.movie)
     }
 }

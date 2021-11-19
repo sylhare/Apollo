@@ -1,5 +1,5 @@
-import { graphql } from 'graphql';
-import { serviceSchema } from '../../app/schemas';
+import { graphql } from 'graphql'
+import { serviceSchema } from '../../app/schemas'
 
 describe('User Schema', () => {
     test('Test getAllUsers query', async () => {
@@ -9,10 +9,10 @@ describe('User Schema', () => {
                 name
             }
         }
-        `;
+        `
         return graphql(serviceSchema, query).then((result: any) => {
-            const users = result.data.user;
-            expect(users.length).toBe(2);
-        });
-    });
-});
+            const users = result.data.user
+            expect(users.length).toBe(2)
+        })
+    })
+})

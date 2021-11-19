@@ -1,4 +1,4 @@
-import { Book } from '../../../models/BookType';
+import { Book } from '../../../models/BookType'
 
 export interface AddBookInput {
     title: string;

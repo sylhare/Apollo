@@ -1,4 +1,4 @@
-import { Application } from './app/server';
+import { Application } from './app/server'
 
-const app = new Application();
-app.start();
+const app = new Application()
+app.start()

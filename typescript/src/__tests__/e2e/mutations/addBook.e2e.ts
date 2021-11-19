@@ -1,16 +1,16 @@
-import { Application } from '../../../app/server';
-import { TestClient } from '../TestClient';
-import { gql } from 'apollo-server-express';
+import { Application } from '../../../app/server'
+import { TestClient } from '../TestClient'
+import { gql } from 'apollo-server-express'
 
 describe('addBook', () => {
-    const app = new Application();
-    let client: TestClient;
+    const app = new Application()
+    let client: TestClient
 
     beforeAll(async () => {
-        app.start(4444);
-        client = new TestClient(new URL(app.graphQlPath()));
-    });
-    afterAll(async () => app.stop());
+        app.start(4444)
+        client = new TestClient(new URL(app.graphQlPath()))
+    })
+    afterAll(async () => app.stop())
 
     it('creates a addBook mutation', async () => {
         const result = await client.mutate({
@@ -21,7 +21,7 @@ describe('addBook', () => {
                     }
                 }
             `
-        }).then(result => result.data.addBook);
+        }).then(result => result.data.addBook)
         expect(result).toMatchObject({
             book: {
                 __typename: 'Book',
@@ -31,8 +31,8 @@ describe('addBook', () => {
                 },
                 title: 'book',
             }
-        });
-    });
+        })
+    })
 
     it('generates user errors', async () => {
         const result = await client.mutate({
@@ -48,8 +48,8 @@ describe('addBook', () => {
                     }
                 }
             `
-        }).then(result => result.data.addBook);
-        expect(result.userError.length).toBe(2);
+        }).then(result => result.data.addBook)
+        expect(result.userError.length).toBe(2)
         expect(result).toMatchObject({
             book: null,
             userError: [{
@@ -57,6 +57,6 @@ describe('addBook', () => {
             }, {
                 message: 'Invalid author name'
             }]
-        });
-    });
-});
+        })
+    })
+})
