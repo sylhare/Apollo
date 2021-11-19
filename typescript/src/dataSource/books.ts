@@ -45,6 +45,6 @@ export function retrieveBook(title: string): Book | null {
 export class BookDataSource<TContext> extends DataSource<TContext> {
 
     createBook(title: string, author: string): Book {
-        return { title: title, author: { name: author } }
+        return { title, author: { name: author } }
     }
 }

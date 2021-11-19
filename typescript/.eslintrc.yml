@@ -43,6 +43,15 @@
         'error',
         { code: 250 }
     ],
+    # To force the use of '==='
+    eqeqeq: [
+        'error',
+        'smart'
+    ],
+    # To force the use of 'const' when variable is never reassigned
+    prefer-const: [
+        'error'
+    ],
     # To force single quotes
     quotes: [
         'error',
@@ -53,23 +62,23 @@
         'warn',
         'only-multiline'
     ],
-    # To force the use of '==='
-    eqeqeq: [
+    # To force semi column
+    semi: [
         'error',
-        'smart'
-    ],
-    # To force the use of 'const' when variable is never reassigned
-    prefer-const: [
-        'error'
+        'never'
     ],
     # With no semi colomn
     no-unexpected-multiline: [
         'error'
     ],
-    # To force semi column
-    semi: [
+    # To force the use of the shorthand syntax
+    object-shorthand: [
         'error',
-        'never'
+        'always'
+    ],
+    # To avoid rename a reference to the same name on assignment
+    no-useless-rename: [
+        'error'
     ],
     # To limit depth of nested code blocks
     max-depth: [

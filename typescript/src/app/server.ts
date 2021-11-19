@@ -12,7 +12,7 @@ export class Application {
     readonly app: express.Application = express()
     readonly apolloServer: ApolloServer = new ApolloServer({
         schema: serviceSchema,
-        dataSources: dataSources,
+        dataSources,
         context: ({ req }) => ({}), // For HTTP context
         validationRules: [depthLimit(6)]
     })
@@ -27,7 +27,7 @@ export class Application {
 
     start(port: number = this.applicationPort): void {
         this.applicationPort = port
-        this.httpServer.listen({ port: port }, (): void =>
+        this.httpServer.listen({ port }, (): void =>
             console.log(`🚀GraphQL-Server is running on ${this.graphQlPath()}`)
         )
     }
