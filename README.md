@@ -6,7 +6,7 @@ Apollo Server with GraphQL experimentation.
 
 ## Setup
 
-Install and run the server in the `javascript` folder using:
+Install and run the server in the `javascript`or `typescript` folder using:
 
 ```bash
 npm install
@@ -51,7 +51,7 @@ can retrieve as much or as little they need.
 
 ### Mutation
 
-Add a book using the mutation query:
+Add a book using this simple example mutation:
 
 ```graphql
 mutation CreateBook {
