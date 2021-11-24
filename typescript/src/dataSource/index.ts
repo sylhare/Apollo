@@ -16,7 +16,7 @@ export interface AppDataSources extends DataSources<any> {
 
 export type DataSources<TContext> = {
     [name: string]: DataSource<TContext>;
-};
+}
 
 export function dataSources<TContext>(): DataSources<TContext> {
     return {

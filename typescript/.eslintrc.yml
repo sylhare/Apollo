@@ -62,12 +62,12 @@
         'warn',
         'only-multiline'
     ],
-    # To force semi column
-    semi: [
+    # To force semi colon
+    '@typescript-eslint/semi': [
         'error',
         'never'
     ],
-    # With no semi colomn
+    # With no semi colon
     no-unexpected-multiline: [
         'error'
     ],
