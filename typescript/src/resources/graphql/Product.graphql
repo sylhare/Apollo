@@ -3,13 +3,12 @@ extend type Query {
     product(id: Int!): Product
 }
 
-extend type Mutation {
-    "Mutation to create a product"
-    createProduct(product: CreateProductInput): CreateProductResult
 
-    "Test mutation not following guidelines"
+extend type Mutation {
+    "Test mutation"
+    productCreation(product: CreateProductInput): CreateProductResult
+    createProduct(product: CreateProductInput): CreateProductResult
     setProductDescription(description: String): Product
-    "Test mutation not following guidelines"
     setProductName(name: String): Product
 }
 

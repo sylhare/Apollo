@@ -1,4 +1,3 @@
-import { ProductInput } from '../models/ProductReference'
 import { getProductById, getProducts } from '../resolvers/query/productQueries'
 import { getAllBooks, getBook, lotr } from '../resolvers/query/Books'
 import { example } from '../resolvers/query/example'
@@ -11,6 +10,8 @@ import { scenes } from '../resolvers/movie/scenes'
 import { OddScalar } from '../resolvers/scalar/OddScalar'
 import { addBook } from '../resolvers/mutations/addBook/addBook'
 import { createProduct } from '../resolvers/mutations/stacked/createProduct';
+import { productCreation } from '../resolvers/mutations/productCreation';
+import { ProductInput } from '../models/ProductReference';
 
 const resolvers = {
     Query: {
@@ -32,7 +33,7 @@ const resolvers = {
         movies
     },
     Mutation: {
-        createProduct: async (_: any, { product }: { product: ProductInput }) => createProduct(product),
+        productCreation: async (_: any, { product }: { product: ProductInput }) => productCreation(product),
         exampleMutation,
         addBook
     },
