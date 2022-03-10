@@ -12,6 +12,8 @@ import { addBook } from '../resolvers/mutations/addBook/addBook'
 import { createProduct } from '../resolvers/mutations/stacked/createProduct';
 import { productCreation } from '../resolvers/mutations/productCreation';
 import { ProductInput } from '../models/ProductReference';
+import { setProductDescription } from '../resolvers/mutations/stacked/setProductDescription';
+import { setProductName } from '../resolvers/mutations/stacked/setProductName';
 
 const resolvers = {
     Query: {
@@ -34,6 +36,9 @@ const resolvers = {
     },
     Mutation: {
         productCreation: async (_: any, { product }: { product: ProductInput }) => productCreation(product),
+        createProduct,
+        setProductName,
+        setProductDescription,
         exampleMutation,
         addBook
     },

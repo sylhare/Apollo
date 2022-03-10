@@ -13,6 +13,19 @@ export class ProductDataSource implements DataSource {
     add(product: ProductReference) {
         this.inMemoryCache = products.concat(product)
     }
+
+    findAndUpdate(id: Number, updatedProduct: Partial<Product>): Product | undefined {
+        let changedProduct = undefined
+        products.map(product => {
+            if (product.id === id) {
+                if (updatedProduct.name) product.name = updatedProduct.name;
+                if (updatedProduct.description) product.description = updatedProduct.description;
+                changedProduct = product
+            }
+            return product
+        })
+        return changedProduct
+    }
 }
 
 export let products: ProductReference[] = new ProductDataSource().inMemoryCache
