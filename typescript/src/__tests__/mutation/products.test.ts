@@ -24,7 +24,7 @@ describe('Products Mutation', () => {
 
     test('Create Product', async () =>
         expect(graphql(serviceSchema, CREATE_ERROR_PRODUCT)).resolves.toMatchObject({
-            data: { 'createProduct': null },
+            data: { createProduct: null },
             errors: [new ProductCreationError('business')]
         })
     )

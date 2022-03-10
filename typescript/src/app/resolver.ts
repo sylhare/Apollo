@@ -1,5 +1,4 @@
 import { ProductInput } from '../models/ProductReference'
-import { createProduct } from '../resolvers/mutations/productCreation'
 import { getProductById, getProducts } from '../resolvers/query/productQueries'
 import { getAllBooks, getBook, lotr } from '../resolvers/query/Books'
 import { example } from '../resolvers/query/example'
@@ -11,6 +10,7 @@ import { movies } from '../resolvers/moviePerson/movies'
 import { scenes } from '../resolvers/movie/scenes'
 import { OddScalar } from '../resolvers/scalar/OddScalar'
 import { addBook } from '../resolvers/mutations/addBook/addBook'
+import { createProduct } from '../resolvers/mutations/stacked/createProduct';
 
 const resolvers = {
     Query: {
