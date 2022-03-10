@@ -42,7 +42,7 @@ export function retrieveBook(title: string): Book | null {
     return books.find(book => book.title === title) ?? null
 }
 
-export class BookDataSource<TContext> extends DataSource<TContext> {
+export class BookDataSource implements DataSource {
 
     createBook(title: string, author: string): Book {
         return { title, author: { name: author } }
