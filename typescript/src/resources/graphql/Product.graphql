@@ -6,16 +6,16 @@ extend type Query {
 
 extend type Mutation {
     "Test mutation"
-    productCreation(product: CreateProductInput): CreateProductResult
-    createProduct(product: CreateProductInput): CreateProductResult
-    setProductDescription(description: String): Product
-    setProductName(name: String): Product
+    productCreation(product: CreateProductInput): ProductCreationResult
+    createProduct(input: CreateProductInput): Product!
+    setProductDescription(id: Int!, description: String): Product
+    setProductName(id: Int!, name: String): Product
 }
 
 "A product"
 type Product {
     "Id of the product"
-    id: Int
+    id: Int!
     "Name of the product"
     name: String
     "Description of the product"
@@ -31,7 +31,7 @@ input CreateProductInput {
 }
 
 "Result after creating a product"
-type CreateProductResult {
+type ProductCreationResult {
     "Useless string result to say Error or Success"
     result: String
 }

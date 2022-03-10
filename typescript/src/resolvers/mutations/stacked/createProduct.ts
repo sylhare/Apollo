@@ -1,12 +1,13 @@
 import { ProductInput } from '../../../models/ProductReference';
-import { ProductCreationError } from '../../../app/errors';
-import { addProduct } from '../../../dataSource/products';
+import { AppContext } from '../../../dataSource';
+import { Product } from '../../../models/Product';
 
-
-export async function createProduct(product: ProductInput) {
-  if (product.name === 'business') throw new ProductCreationError(product.name)
-
-  const newId = Math.floor(Math.random() * 100)
-  addProduct({ ...product, id: newId })
-  return { result: 'success' }
+export async function createProduct(
+  parent: null,
+  { input }: { input: ProductInput },
+  { dataSources }: AppContext
+): Promise<Product> {
+  const product = new Product({ id: Math.floor(Math.random() * 100), ...input })
+  dataSources.products.add(product);
+  return product;
 }
