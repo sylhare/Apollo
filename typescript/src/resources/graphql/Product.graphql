@@ -4,19 +4,35 @@ extend type Query {
 }
 
 extend type Mutation {
+    "Mutation to create a product"
     createProduct(product: CreateProductInput): CreateProductResult
+
+    "Test mutation not following guidelines"
+    setProductDescription(description: String): Product
+    "Test mutation not following guidelines"
+    setProductName(name: String): Product
 }
 
+"A product"
 type Product {
-    id: Int,
-    name: String,
-    description: String
-}
-input CreateProductInput {
-    name: String,
+    "Id of the product"
+    id: Int
+    "Name of the product"
+    name: String
+    "Description of the product"
     description: String
 }
 
+"Input to create a product"
+input CreateProductInput {
+    "Name to be set for the product"
+    name: String
+    "Description to be set for the product"
+    description: String
+}
+
+"Result after creating a product"
 type CreateProductResult {
-    result: String!
+    "Useless string result to say Error or Success"
+    result: String
 }
