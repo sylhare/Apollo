@@ -59,4 +59,28 @@ describe('Product', () => {
       name: 'el producto'
     })
   })
+
+  it('updates in bulk', async() => {
+    const client = new TestClient(new URL(app.graphQlPath()))
+    const product = await client.mutate({
+      mutation: gql`
+          mutation {
+              setProductDescription(id: 303, description: "fancy"){
+                  id
+                  description
+              }
+              setProductName(id: 303, name: "phone") {
+                  id
+                  name
+                  description
+              }
+          }
+      `
+    }).then(result => result.data.setProductName)
+    expect(product).toMatchObject({
+      id: 303,
+      name: 'phone',
+      description: 'fancy'
+    })
+  });
 })
