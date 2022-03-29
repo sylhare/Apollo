@@ -1,5 +1,6 @@
 # Custom scalar type
 scalar Odd
+scalar Date
 
 type Query {
     getAllUsers: [User]

@@ -14,6 +14,7 @@ import { productCreation } from '../resolvers/mutations/productCreation';
 import { ProductInput } from '../models/ProductReference';
 import { setProductDescription } from '../resolvers/mutations/stacked/setProductDescription';
 import { setProductName } from '../resolvers/mutations/stacked/setProductName';
+import { DateScalar } from "../resolvers/scalar/DateScalar";
 
 const resolvers = {
     Query: {
@@ -42,7 +43,8 @@ const resolvers = {
         exampleMutation,
         addBook
     },
-    Odd: OddScalar
+    Odd: OddScalar,
+    Date: DateScalar,
 }
 
 export default resolvers
