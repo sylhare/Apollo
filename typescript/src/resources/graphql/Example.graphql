@@ -2,6 +2,17 @@
 scalar Odd
 scalar Date
 
+extend type Query {
+    "Query an event from an input date"
+    eventAt(date: Date!): Event
+}
+
+type Event {
+    id: ID!
+    createdAt: Date!
+    name: String!
+}
+
 type Query {
     getAllUsers: [User]
     example: Example
