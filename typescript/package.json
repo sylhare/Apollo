@@ -43,6 +43,7 @@
     "express": "^4.17.1",
     "graphql": "^15.5.0",
     "graphql-depth-limit": "^1.1.0",
+    "graphql-fields-list": "^2.2.4",
     "graphql-tools": "^7.0.4",
     "helmet": "^4.4.1",
     "http": "^0.0.1-security",
