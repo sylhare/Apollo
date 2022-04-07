@@ -23,6 +23,6 @@ export type DataSources<TContext> = {
 export function dataSources(): AppDataSources {
     return {
         books: new BookDataSource(),
-        products: new ProductDataSource()
+        products: new ProductDataSource(),
     }
 }

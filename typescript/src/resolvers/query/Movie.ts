@@ -6,6 +6,7 @@ interface MovieInput {
     title: string
 }
 
-export async function movie(_: null, { title }: MovieInput): Promise<Movie | null> {
+export async function movie(_: null, { title }: MovieInput, context:any, info: any): Promise<Movie | null> {
+    console.log(`${JSON.stringify(info)}`)
     return movies.find(it => it.title === title) ?? null
 }

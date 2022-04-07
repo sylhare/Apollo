@@ -45,5 +45,4 @@ export class Application {
         this.app.use(helmet({ contentSecurityPolicy: false }))
         this.app.use(compression())
     }
-
 }
