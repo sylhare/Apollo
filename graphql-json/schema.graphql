@@ -1,7 +1,7 @@
-type Example {
+type ExampleGraphQL {
     name: String
 }
 
 type Query {
-    example: Example
+    exampleGraphQL: ExampleGraphQL
 }

@@ -9,7 +9,7 @@
       "types": [
         {
           "kind": "OBJECT",
-          "name": "Example",
+          "name": "ExampleGraphQL",
           "description": null,
           "fields": [
             {
@@ -46,12 +46,12 @@
           "description": null,
           "fields": [
             {
-              "name": "example",
+              "name": "exampleGraphQL",
               "description": null,
               "args": [],
               "type": {
                 "kind": "OBJECT",
-                "name": "Example",
+                "name": "ExampleGraphQL",
                 "ofType": null
               },
               "isDeprecated": false,
