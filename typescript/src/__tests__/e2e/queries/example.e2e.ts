@@ -2,6 +2,7 @@ import { TestClient } from '../TestClient'
 import { gql } from 'apollo-server-express'
 import { Application } from '../../../app/server'
 import Example from "../../../models/Example";
+import { user } from "../fragments";
 
 describe('Example', () => {
     const app = new Application()
@@ -16,9 +17,24 @@ describe('Example', () => {
                 query {
                     example {
                         id
-                        user {
-                            name
-                        }
+                        user { name }
+                    }
+                }
+            `
+        }).then(result => result.data.example)
+        expect(example.id).toBe('1')
+        expect(example.user.name).toBe('user-example-1')
+    })
+
+    test('Query with fragments', async () => {
+        const client = new TestClient(new URL(app.graphQlPath()))
+        const example: Example = await client.query({
+            query: gql`
+                ${user}
+                query {
+                    example {
+                        id
+                        user { ...user }
                     }
                 }
             `

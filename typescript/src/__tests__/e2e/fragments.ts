@@ -1,5 +1,11 @@
 import { gql } from 'apollo-server-express'
 
+export const user = gql`
+    fragment user on User {
+        name
+    }
+`
+
 export const baseMovieFragment = gql`
     fragment baseMovieFragment on Movie {
         title
