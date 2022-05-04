@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './styles.css';
 
-function App() {
+function Learn() {
   return (
     <div className="App">
       <header className="App-header">
@@ -23,4 +23,4 @@ function App() {
   );
 }
 
-export default App;
+export default Learn;
