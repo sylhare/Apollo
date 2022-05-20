@@ -9,11 +9,11 @@
     "test": "jest",
     "test:watch": "jest --verbose --detectOpenHandles",
     "test:cov": "jest --coverage",
-    "start": "npm run build:dist && node 'dist/index.js'",
+    "start:build": "npm run build:dist && node 'dist/index.js'",
     "copy-files": "mkdir dist/resources || true && cp -R src/resources/** dist/resources/",
-    "start:dev": "npm run build:dev",
+    "start": "ts-node src/index.ts",
     "build": "nodemon 'src/index.ts' --exec 'ts-node' src/index.ts -e ts,graphql",
-    "build:dist": "tsc && npm run copy-files"
+    "build:dist": "tsc"
   },
   "repository": {
     "type": "git",
