@@ -1,3 +1,4 @@
+
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { useQueryAllBooks } from '../../hooks/useQueryAllBooks';
 import { useQueryBooks } from '../../hooks/useQueryBooks';
@@ -15,6 +16,19 @@ function BookItems(): JSX.Element {
     </div>
   );
 }
+
+function OtherBookItems(): JSX.Element {
+  const { data } = useQueryBooks();
+  if (!data) return (<div> No books, start the typescript API first </div>)
+
+  return (
+    <div>
+      <ul>
+        <li key={1}>{data.book.title}</li>
+      </ul>
+    </div>
+  );
+}
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -23,10 +37,12 @@ const queryClient = new QueryClient({
     },
   },
 });
+
 export default function Book() {
   return (
     <QueryClientProvider client={queryClient}>
       <BookItems/>
+      <OtherBookItems/>
     </QueryClientProvider>
   )
 }
