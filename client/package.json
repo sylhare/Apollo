@@ -20,18 +20,22 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.18.0",
+    "@babel/preset-react": "^7.17.12",
+    "@babel/preset-typescript": "^7.17.12",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.0",
     "jest": "^27.4.7",
     "jest-html-reporter": "^3.4.2",
+    "nock": "^13.2.4",
     "ts-jest": "^27.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
