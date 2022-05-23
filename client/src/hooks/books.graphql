@@ -11,3 +11,39 @@ type Book {
 type Author {
     name: String
 }
+
+type Mutation {
+    addBook(input: AddBookInput): AddBookPayload
+}
+
+input AddBookInput {
+    title: String!
+    authorName: String!
+}
+
+type AddBookPayload {
+    book: Book
+    userError: [AddBookError]
+}
+
+union AddBookError =  InvalidBookTitle | InvalidAuthorName | DuplicatedBookError
+
+type InvalidAuthorName implements UserError {
+    message: String!
+    field: [String!]
+}
+
+type DuplicatedBookError implements UserError {
+    message: String!
+    field: [String!]
+}
+
+type InvalidBookTitle implements UserError {
+    message: String!
+    field: [String!]
+}
+
+interface UserError {
+    message: String!
+    field: [String!]
+}
