@@ -3,12 +3,13 @@ import { AddBookError, AddBookInput, AddBookPayload } from './interfaces'
 import { validateInput } from './validations'
 
 export async function addBook(
-    parent: null,
-    { input }: { input: AddBookInput },
-    { dataSources }: AppContext
+  parent: null,
+  { input }: { input: AddBookInput },
+  { dataSources }: AppContext
 ): Promise<AddBookPayload> {
-    const errors: AddBookError[] = validateInput(input)
-    const addedBook = errors.length ? undefined : await dataSources.books.createBook(input.title, input.authorName)
+  const errors: AddBookError[] = validateInput(input)
+  const addedBook = errors.length ? undefined : await dataSources.books.createBook(input.title, input.authorName)
+  console.log(`adding ${addedBook}`)
 
-    return { book: addedBook, userError: errors }
+  return { book: addedBook, userError: errors }
 }
