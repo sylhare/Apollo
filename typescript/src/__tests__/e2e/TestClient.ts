@@ -11,6 +11,8 @@ import {
     QueryOptions,
 } from '@apollo/client/core'
 import { MovieClient } from './MovieClient'
+import { DefaultContext } from '@apollo/client/core/types';
+import { ApolloCache } from '@apollo/client/cache';
 
 export class TestClient extends ApolloClient<NormalizedCacheObject> {
     readonly movie: MovieClient = new MovieClient(this)
@@ -32,7 +34,7 @@ export class TestClient extends ApolloClient<NormalizedCacheObject> {
             .catch(error => Promise.reject(extractMessageFrom(error)))
     }
 
-    mutate<T = any, TVariables = OperationVariables>(options: MutationOptions<T, TVariables>): Promise<FetchResult<T>> {
+    mutate<TData = any, TVariables = OperationVariables, TContext = DefaultContext, TCache extends ApolloCache<any> = ApolloCache<any>>(options: MutationOptions<TData, TVariables, TContext>): Promise<FetchResult<TData>> {
         return super.mutate(options)
             .then(result => result)
             .catch(error => Promise.reject(extractMessageFrom(error)))

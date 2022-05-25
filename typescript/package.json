@@ -31,6 +31,8 @@
   },
   "homepage": "https://github.com/sylhare/Apollo#readme",
   "dependencies": {
+    "@apollo/client": "^3.6.5",
+    "@graphql-tools/schema": "^8.3.13",
     "@types/compression": "^1.7.0",
     "@types/express": "^4.17.11",
     "@types/graphql": "^14.5.0",
@@ -44,7 +46,6 @@
     "graphql": "^15.5.0",
     "graphql-depth-limit": "^1.1.0",
     "graphql-fields-list": "^2.2.4",
-    "graphql-tools": "^7.0.4",
     "helmet": "^4.4.1",
     "http": "^0.0.1-security",
     "ncp": "^2.0.0",
