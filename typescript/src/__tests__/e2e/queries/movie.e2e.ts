@@ -22,6 +22,10 @@ describe('Movie', () => {
                     title: 'Matrix'
                 }]
             },
+            scenes: [
+                { __typename: 'Scene', location: 'Matrix' },
+                { __typename: 'Scene', location: 'Nebuchadnezzar' }
+            ],
             actors: [
                 {
                     name: 'Keanu Reeves',

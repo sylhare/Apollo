@@ -6,7 +6,9 @@ const londonScene = (name: string) => new Scene(name, 'London')
 
 export const movies: Movie[] = [
     new Movie('Matrix', 'The Wachowskis',
-        ['Keanu Reeves', 'Carrie-Anne Moss', 'Laurence Fishburne']),
+        ['Keanu Reeves', 'Carrie-Anne Moss', 'Laurence Fishburne'],
+      [new Scene('town', 'Matrix'), new Scene('crew meeting', 'Nebuchadnezzar')]
+    ),
     new Movie('John Wick', 'Chad Stahelski',
         ['Keanu Reeves']),
     new Movie('Apocalypse Now', 'Francis Ford Coppola',

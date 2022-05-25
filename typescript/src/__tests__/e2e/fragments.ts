@@ -23,6 +23,9 @@ export const movieFragment = gql`
                 title
             }
         }
+        scenes {
+            location
+        }
         actors {
             name
             role

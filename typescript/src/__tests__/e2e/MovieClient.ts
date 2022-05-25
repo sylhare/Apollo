@@ -2,10 +2,12 @@ import { TestClient } from './TestClient'
 import { gql } from 'apollo-server-express'
 import { baseMovieFragment, movieFragment, nestedMovieFragment, overlyNestedMovieFragment } from './fragments'
 import { GraphQLMoviePerson } from '../../resolvers/movie/director'
+import { GraphQLScene } from '../../resolvers/movie/scenes';
 
 export interface GraphQLMovie {
     title: string
     director: GraphQLMoviePerson
+    scenes: GraphQLScene[]
     actors: GraphQLMoviePerson
 }
 
