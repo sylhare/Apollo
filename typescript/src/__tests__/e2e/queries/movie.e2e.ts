@@ -15,6 +15,7 @@ describe('Movie', () => {
     it('queries existing movie', async () => {
         const client = new TestClient(new URL(app.graphQlPath()))
         await expect(client.movie.queryByTitle('Matrix')).resolves.toMatchObject({
+            id: expect.any(String),
             title: 'Matrix',
             director: {
                 ...matrixDirector,
@@ -103,5 +104,12 @@ describe('Movie', () => {
     it('returns null when the movie does not exist', async () => {
         const client = new TestClient(new URL(app.graphQlPath()))
         await expect(client.movie.queryByTitle('qwerty')).resolves.toBeNull()
+    })
+
+    it('queries multiple times same movie for dataloader to use cache', async () => {
+        const client = new TestClient(new URL(app.graphQlPath()))
+        for (let i = 0; i < 20; i++) {
+            await expect(client.movie.nestedQueryByTitle('Matrix')).resolves.toBeDefined();
+        }
     })
 })

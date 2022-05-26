@@ -1,14 +1,15 @@
 import Movie from '../../models/movie/Movie'
-import { movies } from '../../dataSource/movies'
+import { AppContext } from '../../dataSource';
 
 // Apollo expects an object as parameter
 interface MovieInput {
-    title: string
+  title: string
 }
 
 export async function movie(
   _: null,
-  { title }: MovieInput
-): Promise<Movie | null> {
-    return movies.find(it => it.title === title) ?? null
+  { title }: MovieInput,
+  { dataSources: { movies } }: AppContext
+): Promise<Movie | undefined> {
+  return movies.loader.load(title);
 }
