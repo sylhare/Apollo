@@ -1,5 +1,6 @@
 import { BookDataSource } from './books'
 import { ProductDataSource } from './products';
+import { MoviesDataSource } from './movies';
 
 export type AppContext = Context<AppDataSources>
 
@@ -14,6 +15,7 @@ interface Context<TDataSources extends object> {
 export interface AppDataSources extends DataSources<Context<any>> {
     books: BookDataSource;
     products: ProductDataSource;
+    movies: MoviesDataSource;
 }
 
 export type DataSources<TContext> = {
@@ -24,5 +26,6 @@ export function dataSources(): AppDataSources {
     return {
         books: new BookDataSource(),
         products: new ProductDataSource(),
+        movies: new MoviesDataSource(),
     }
 }
