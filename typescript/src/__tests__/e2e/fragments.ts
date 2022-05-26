@@ -8,6 +8,7 @@ export const user = gql`
 
 export const baseMovieFragment = gql`
     fragment baseMovieFragment on Movie {
+        id
         title
     }
 `
@@ -40,16 +41,21 @@ export const nestedMovieFragment = gql`
     ${baseMovieFragment}
     fragment nestedMovieFragment on Movie {
         ...baseMovieFragment
+        actors {
+            movies {
+                ...baseMovieFragment
+            }
+        }
         director {
             name
             role
             movies {
-                title
+                ...baseMovieFragment
                 director {
                     name
                     role
                     movies {
-                        title
+                        ...baseMovieFragment
                     }
                 }
             }

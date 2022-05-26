@@ -3,6 +3,8 @@ extend type Query {
 }
 
 type Movie {
+    "Unique identifier of a movie, helps graphQL resolve it"
+    id: ID!
     title: String!
     director: MoviePerson!
     actors: [MoviePerson]!
