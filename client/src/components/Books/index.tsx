@@ -3,6 +3,7 @@ import { BatchBookItems } from './BatchBookItems';
 import { AllBooksItems } from './AllBooksItems';
 import { CombinedBookItems } from './CombinedBookItems';
 import { AddBooksItems } from './AddBooksItems';
+import { BookDisplay } from './BookDisplay';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,6 +21,7 @@ export default function Book() {
       <CombinedBookItems/>
       <BatchBookItems/>
       <AddBooksItems/>
+      <BookDisplay/>
     </QueryClientProvider>
   )
 }
