@@ -2,7 +2,7 @@ import { AddBookError, AddBookInput } from './interfaces'
 import { InvalidAuthorName, InvalidBookTitle } from './errors'
 
 export function validateInput(input: AddBookInput): AddBookError[] {
-    const regex = /\W/g
+    const regex = /[^a-zA-Z' ']/g
     const errors: AddBookError[] = []
 
     if (regex.test(input.title)) errors.push(new InvalidBookTitle())

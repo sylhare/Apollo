@@ -1,4 +1,4 @@
-import { useAddBooks } from '../../hooks/useAddBook';
+import { useAddBooks } from '../../hooks/useAddBooks';
 
 export function AddBooksItems(): JSX.Element {
   const { data } = useAddBooks();
