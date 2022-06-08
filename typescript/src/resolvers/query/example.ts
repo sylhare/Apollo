@@ -4,7 +4,7 @@ import { fieldsList, fieldsMap } from "graphql-fields-list";
 import { GraphQLResolveInfo } from 'graphql';
 import { AppContext } from "../../dataSource";
 
-export async function example(parent: any, args: Record<string, any>, context: AppContext, info: GraphQLResolveInfo): Promise<Example> {
+export async function example(parent: undefined, args: Record<string, any>, context: AppContext, info: GraphQLResolveInfo): Promise<Example> {
     console.log(`Parent in the resolver chain: ${JSON.stringify(parent)}`)
     console.log(`Arguments of the query: ${JSON.stringify(args)}`)
     console.log(`Apollo Server's context of current request: ${JSON.stringify(context)}`)

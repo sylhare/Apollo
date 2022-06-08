@@ -21,7 +21,11 @@ export const useBatchQueryBooks = (): UseQueryResult<BatchBookData[] | undefined
 };
 
 export const useQueryBook = (title: string): UseQueryResult<BookData | undefined> => {
-  return useQuery<BookData, Error>(`query book ${title}`, () => queryBook(title), {});
+  return useQuery<BookData, Error>(
+    `query book ${title}`,
+    () => queryBook(title),
+    {}
+  );
 };
 
 const queryBook = async (title: string): Promise<BookData> => request(endpoint, bookQuery, { title })
