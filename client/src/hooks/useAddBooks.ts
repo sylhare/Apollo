@@ -1,5 +1,5 @@
 import { batchRequests, gql } from 'graphql-request';
-import { useQuery, UseQueryResult } from 'react-query';
+import { useMutation, UseMutationResult, useQuery, UseQueryResult } from 'react-query';
 import { Book, endpoint } from './index';
 
 interface AddBookData {
@@ -23,4 +23,16 @@ export const useAddBooks = (): UseQueryResult<AddBookData[] | undefined> => {
       {}
     );
 };
+
+export const useAddBooksMutation = (): UseMutationResult<AddBookData[] | undefined, Error, void> => {
+  return useMutation<AddBookData[], Error>('addBooks',
+    async () => batchRequests(endpoint, [
+      { document: addBook, variables: { input: { title: "book D", authorName: "author D" } } },
+      { document: addBook, variables: { input: { title: "book E", authorName: "author E" } } },
+      { document: addBook, variables: { input: { title: "book F", authorName: "author F" } } },
+    ]),
+    {}
+  );
+};
+
 
