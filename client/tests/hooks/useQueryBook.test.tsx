@@ -1,20 +1,10 @@
-import { renderHook, waitFor } from '@testing-library/react';
-import { useQueryBook } from '../../src/hooks/useBatchQueryBooks';
-import { QueryClient, QueryClientProvider } from 'react-query';
 import nock from 'nock';
-import React from 'react';
-
-const queryClient = new QueryClient({
-  defaultOptions: { queries: { suspense: true }, },
-});
-
-const wrapper = ({ children }: { children: React.ReactNode}): JSX.Element => (
-  <QueryClientProvider client={queryClient}>
-    {children}
-  </QueryClientProvider>
-);
+import { renderHook, waitFor } from '@testing-library/react';
+import { wrapper } from './hookUtils';
+import { useQueryBook } from '../../src/hooks/useBatchQueryBooks';
 
 describe('useQueryBook', () => {
+
   beforeEach(() => nock.cleanAll());
 
   it('should query a book', async () => {
@@ -26,5 +16,5 @@ describe('useQueryBook', () => {
     const { result } = renderHook(() => useQueryBook('title'), { wrapper });
     await waitFor(() => result.current.isSuccess);
     expect(result.current.data?.book).toEqual({ title: 'title', author: { name: 'author' } });
-  })
+  });
 });
