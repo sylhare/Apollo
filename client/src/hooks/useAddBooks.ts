@@ -25,7 +25,7 @@ export const useAddBooks = (): UseQueryResult<AddBookData[] | undefined> => {
 };
 
 export const useAddBooksMutation = (): UseMutationResult<AddBookData[] | undefined, Error, void> => {
-  return useMutation<AddBookData[], Error>('addBooks',
+  return useMutation<AddBookData[], Error>('addBooks-mutation',
     async () => batchRequests(endpoint, [
       { document: addBook, variables: { input: { title: "book D", authorName: "author D" } } },
       { document: addBook, variables: { input: { title: "book E", authorName: "author E" } } },
