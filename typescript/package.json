@@ -47,6 +47,7 @@
     "graphql": "^15.8.0",
     "graphql-depth-limit": "^1.1.0",
     "graphql-fields-list": "^2.2.4",
+    "graphql-parse-resolve-info": "^4.12.3",
     "helmet": "^4.4.1",
     "http": "^0.0.1-security",
     "ncp": "^2.0.0",
