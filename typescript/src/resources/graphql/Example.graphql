@@ -25,9 +25,11 @@ type Mutation {
 type Example {
     id: ID
     user: User
+    extra: String
 }
 
 type User {
+    id: ID
     name: String
 }
 

@@ -18,12 +18,26 @@ describe('Example', () => {
                     example {
                         id
                         user { name }
+                        extra
                     }
                 }
             `
         }).then(result => result.data.example)
         expect(example.id).toBe('1')
         expect(example.user.name).toBe('user-example-1')
+    })
+
+    test('Query error', async () => {
+        const client = new TestClient(new URL(app.graphQlPath()))
+        await expect(client.query({
+            query: gql`
+                query {
+                    example {
+                        user { id }
+                    }
+                }
+            `
+        })).rejects.toBeDefined();
     })
 
     test('Query with fragments', async () => {

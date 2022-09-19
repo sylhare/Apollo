@@ -16,5 +16,9 @@ export async function example(parent: undefined, args: Record<string, any>, cont
     console.log(`${JSON.stringify(resolvedInfo)}`)
     console.log(`${JSON.stringify(simplifyParsedResolveInfoFragmentWithType(resolvedInfo, info.returnType))}`)
 
-    return new Example('user-example-1', '1')
+    if (fieldsMap(info, { path: 'user', skip: ['__typename'] }).hasOwnProperty('id')) {
+      throw new Error('Not implemented');
+    } else {
+        return new Example('user-example-1', '1')
+    }
 }
