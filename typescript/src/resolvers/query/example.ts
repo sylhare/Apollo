@@ -11,7 +11,7 @@ export async function example(parent: undefined, args: Record<string, any>, cont
     console.log(`Apollo Server's context of current request: ${JSON.stringify(context)}`)
     console.log(`Advanced GraphQL information about request: ${JSON.stringify(info)}`)
     console.log(`${JSON.stringify(fieldsList(info))}`)
-    console.log(`${JSON.stringify(fieldsMap(info, { path: 'user', skip: ['__typename'] }))}`)
+    console.log(`${JSON.stringify(fieldsMap(info, { path: '', skip: ['user.__typename', '__typename'] }))}`)
     const resolvedInfo = parseResolveInfo(info) as ResolveTree;
     console.log(`${JSON.stringify(resolvedInfo)}`)
     console.log(`${JSON.stringify(simplifyParsedResolveInfoFragmentWithType(resolvedInfo, info.returnType))}`)
