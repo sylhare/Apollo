@@ -56,6 +56,5 @@ describe('Books', () => {
                 }
             }
         `)
-        .then((result: any) => expect(result.data.lotr).toMatchObject({ title: 'The lord of the rings' })
-        ))
+        .then((result: any) => expect(result.data.lotr).toMatchObject({ title: 'The lord of the rings' })))
 })
