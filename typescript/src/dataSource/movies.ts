@@ -4,12 +4,21 @@ import { Scene } from '../models/movie/Scene'
 import { DataSource } from './index';
 import DataLoader from 'dataloader';
 
+type MovieKey = { title: string }
+
 export class MoviesDataSource implements DataSource {
     readonly loader: DataLoader<string, (Movie | undefined)>
+    readonly erroredLoader: DataLoader<MovieKey, (Movie | undefined)>
     private loadCounter = 0;
 
     constructor() {
         this.loader = new DataLoader(title => this.findFromTitle(title))
+        this.erroredLoader = new DataLoader((keys: readonly MovieKey[]) => this.erroredBatch(keys))
+    }
+
+    // Results and keys must be in the same order.
+    erroredBatch(keys: readonly MovieKey[]): Promise<(Movie | undefined)[]> {
+        return Promise.resolve(this.movies.splice(0, keys.length));
     }
 
     findFromTitle(titles: readonly string[]): Promise<(Movie | undefined)[]> {
