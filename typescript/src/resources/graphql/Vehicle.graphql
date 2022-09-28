@@ -1,0 +1,27 @@
+extend type Query {
+    "Query all vehicles"
+    vehicles: [Vehicle]
+    allRims: [Rim]
+}
+
+"An example graphQL vehicle"
+type Vehicle {
+    id: ID!
+    name: String
+    rims: [Rim]
+    tires: [Tire]
+}
+
+"Tire is part of the wheel"
+type Tire {
+    id: ID
+    vehicle: Vehicle
+    rim: Rim
+}
+
+"The rim is the part of the wheel that gets attached to the axle"
+type Rim {
+    id: ID
+    vehicle: Vehicle
+    tire: Tire
+}
