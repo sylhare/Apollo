@@ -1,0 +1,15 @@
+#Internal types, defined in @apollo/federation
+extend type Query {
+    _entities(representations: [Representation!]): _Entity!
+}
+
+union _Entity = Vehicle
+
+# noinspection GraphQLIllegalName
+input Representation {
+    __typename: String!
+    id: ID
+}
+
+scalar FieldSet
+directive @key(fields: FieldSet!, resolvable: Boolean = true) repeatable on OBJECT | INTERFACE
