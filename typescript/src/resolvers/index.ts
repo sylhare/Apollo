@@ -19,9 +19,9 @@ import { vehicles } from './query/vehicles';
 import { rims } from './vehicle/rims';
 import { tires } from './vehicle/tires';
 import { vehicle as TireVehicle } from './vehicle/tire/vehicle';
-
 import { vehicle as RimVehicle } from './vehicle/rim/vehicle';
 import { allRims } from './query/allRims';
+import { __resolveReference } from './vehicle/__resolveReference';
 
 const resolvers = {
     Query: {
@@ -55,6 +55,7 @@ const resolvers = {
     Vehicle: {
         rims,
         tires,
+        __resolveReference
     },
     Tire: {
         vehicle: TireVehicle

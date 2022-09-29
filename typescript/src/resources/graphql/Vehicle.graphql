@@ -5,7 +5,7 @@ extend type Query {
 }
 
 "An example graphQL vehicle"
-type Vehicle {
+type Vehicle @key(fields: "id") {
     id: ID!
     name: String
     rims: [Rim]

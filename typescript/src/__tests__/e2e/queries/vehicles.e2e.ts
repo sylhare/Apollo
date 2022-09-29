@@ -45,7 +45,7 @@ describe('Vehicles', () => {
                       vehicle {
                           id
                           tires {        # resolved by vehicle.tires resolver from vehicle resolved by vehicle.rims resolver
-                              vehicle {
+                              vehicle {  # tire.vehicle is also called each time to resolve this one
                                   name
                               }
                           }
@@ -79,4 +79,19 @@ describe('Vehicles', () => {
     expect(rims[0].vehicle!!.tires[0].vehicle).toMatchObject({ name: 'mono-cycle' });
   });
 
+  it('resolves entity by federation', async () => {
+    const vehicle: Vehicle = await client.query({
+      query: gql`
+          query {
+              _entities(representations: [{
+                  __typename: "Vehicle"
+                  id: "3"
+              }]) {
+                  ... on Vehicle { name }
+              }
+          }
+      `
+    }).then(result => result.data._entities[0]);
+    expect(vehicle).toMatchObject({ name: 'train' });
+  });
 });
