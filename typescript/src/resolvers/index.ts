@@ -18,6 +18,10 @@ import { DateScalar } from "./scalar/DateScalar";
 import { vehicles } from './query/vehicles';
 import { rims } from './vehicle/rims';
 import { tires } from './vehicle/tires';
+import { vehicle as TireVehicle } from './vehicle/tire/vehicle';
+
+import { vehicle as RimVehicle } from './vehicle/rim/vehicle';
+import { allRims } from './query/allRims';
 
 const resolvers = {
     Query: {
@@ -30,6 +34,7 @@ const resolvers = {
         book: async (parent: any, { title }: { title: string }) => getBook(title),
         lotr: async () => lotr(),
         vehicles,
+        allRims,
     },
     Mutation: {
         productCreation: async (_: any, { product }: { product: ProductInput }) => productCreation(product),
@@ -50,6 +55,12 @@ const resolvers = {
     Vehicle: {
         rims,
         tires,
+    },
+    Tire: {
+        vehicle: TireVehicle
+    },
+    Rim: {
+        vehicle: RimVehicle
     },
     Odd: OddScalar,
     Date: DateScalar,
