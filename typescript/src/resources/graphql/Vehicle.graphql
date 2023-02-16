@@ -13,7 +13,7 @@ type Vehicle @key(fields: "id") {
 }
 
 "Tire is part of the wheel"
-type Tire {
+type Tire @key(fields: "id vehicle { id }"){
     id: ID
     vehicle: Vehicle
     rim: Rim

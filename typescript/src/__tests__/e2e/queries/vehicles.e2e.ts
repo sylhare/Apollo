@@ -1,7 +1,7 @@
 import { Application } from '../../../app/server';
 import { TestClient } from '../TestClient';
 import { gql } from 'apollo-server-express';
-import { Vehicle, Rim } from '../../../models/Vehicle';
+import { Rim, Vehicle } from '../../../models/Vehicle';
 
 describe('Vehicles', () => {
   const app = new Application()
@@ -93,5 +93,22 @@ describe('Vehicles', () => {
       `
     }).then(result => result.data._entities[0]);
     expect(vehicle).toMatchObject({ name: 'train' });
+  });
+
+  it('resolves tire by federation', async () => {
+    const vehicle: Vehicle = await client.query({
+      query: gql`
+          query {
+              _entities(representations: [{
+                  __typename: "Tire",
+                  vehicle: { id: "2" }
+                  id: "t12"
+              }]) {
+                  ... on Tire { id }
+              }
+          }
+      `
+    }).then(result => result.data._entities[0]);
+    expect(vehicle).toMatchObject({ id: 't12' });
   });
 });
