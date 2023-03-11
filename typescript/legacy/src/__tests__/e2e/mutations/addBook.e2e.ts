@@ -7,7 +7,7 @@ describe('addBook', () => {
     let client: TestClient
 
     beforeAll(async () => {
-        app.start(4444)
+        await app.start(4444)
         client = new TestClient(new URL(app.graphQlPath()))
     })
     afterAll(async () => app.stop())

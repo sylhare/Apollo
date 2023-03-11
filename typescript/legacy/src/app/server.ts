@@ -21,19 +21,21 @@ export class Application {
 
     constructor() {
         this.setUpApp()
-        this.apolloServer.applyMiddleware({ app: this.app, path: '/graphql' })
         this.httpServer = createServer(this.app)
     }
 
-    start(port: number = this.applicationPort): void {
+    async start(port: number = this.applicationPort): Promise<void> {
+        await this.apolloServer.start()
+        this.apolloServer.applyMiddleware({ app: this.app, path: '/graphql' })
         this.applicationPort = port
         this.httpServer.listen({ port }, (): void =>
             console.log(`🚀GraphQL-Server is running on ${this.graphQlPath()}`)
         )
     }
 
-    stop(): void {
+    async stop(): Promise<void> {
         this.httpServer.close()
+        await this.apolloServer.stop();
     }
 
     graphQlPath() {
