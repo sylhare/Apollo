@@ -16,4 +16,4 @@ generates:
 
       # Note, this file path starts from the location of the
       # file where you generate types.
-      contextType: "../index#MyContext"
+      contextType: "../app/server#MyContext"
