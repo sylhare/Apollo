@@ -1,6 +1,6 @@
 #graphql
 type Query {
-  books: [Book]
+  books: [Book!]!
 }
 
 type Book {

@@ -1,5 +1,5 @@
 import { GraphQLResolveInfo } from 'graphql';
-import { MyContext } from '../index';
+import { MyContext } from '../app/server';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -41,7 +41,7 @@ export type GraphQLMutationAddBookArgs = {
 
 export type GraphQLQuery = {
   __typename?: 'Query';
-  books?: Maybe<Array<Maybe<GraphQLBook>>>;
+  books: Array<GraphQLBook>;
 };
 
 export type WithIndex<TObject> = TObject & Record<string, any>;
@@ -152,7 +152,7 @@ export type GraphQLMutationResolvers<ContextType = MyContext, ParentType extends
 }>;
 
 export type GraphQLQueryResolvers<ContextType = MyContext, ParentType extends GraphQLResolversParentTypes['Query'] = GraphQLResolversParentTypes['Query']> = ResolversObject<{
-  books?: Resolver<Maybe<Array<Maybe<GraphQLResolversTypes['Book']>>>, ParentType, ContextType>;
+  books?: Resolver<Array<GraphQLResolversTypes['Book']>, ParentType, ContextType>;
 }>;
 
 export type GraphQLResolvers<ContextType = MyContext> = ResolversObject<{
