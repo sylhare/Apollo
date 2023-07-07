@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "generate": "graphql-codegen --config codegen.yml",
-    "build": "tsc",
-    "start": "npm run compile && node ./dist/index.js"
+    "build": "tsc && cp ./src/graphql/schema.graphql ./dist/graphql/",
+    "start": "npm run build && node ./dist/index.js"
   },
   "author": "",
   "license": "ISC",

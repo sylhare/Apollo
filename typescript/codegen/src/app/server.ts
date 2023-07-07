@@ -1,7 +1,7 @@
 import { GraphQLBook } from '../__generated__/resolvers-types';
 import { ApolloServer } from '@apollo/server';
-import { readFileSync } from 'fs';
 import { resolvers } from './resolvers';
+import { typeDefs } from '../graphql/typeDefs';
 
 interface MyDataSources {
   books: GraphQLBook[];
@@ -24,8 +24,6 @@ export interface MyContext {
   token?: string;
   dataSources?: MyDataSources
 }
-
-const typeDefs = readFileSync('./../schema.graphql', { encoding: 'utf-8' });
 
 export const server = new ApolloServer<MyContext>({
   typeDefs,
