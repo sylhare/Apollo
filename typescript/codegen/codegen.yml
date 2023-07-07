@@ -16,4 +16,14 @@ generates:
 
       # Note, this file path starts from the location of the
       # file where you generate types.
+      config:
+        declarationKind:
+          type: interface
+          input: interface
+          scalar: interface
+          arguments: interface
+          interface: interface
+      skipTypename: true
+      scalars:
+        Date: Date
       contextType: "../app/server#MyContext"
