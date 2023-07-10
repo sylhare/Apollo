@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "generate": "graphql-codegen --config codegen.yml",
-    "build": "tsc && cp ./src/graphql/schema.graphql ./dist/graphql/",
+    "build": "npm run generate && tsc && cp ./src/graphql/schema.graphql ./dist/graphql/",
     "start": "npm run build && node ./dist/index.js"
   },
   "author": "",

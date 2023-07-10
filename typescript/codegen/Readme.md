@@ -18,3 +18,16 @@ npx graphql-code-generator -c codegen.yml
 ```
 
 [Further reading](https://the-guild.dev/graphql/codegen/docs/guides/further-reading)
+
+## GraphQL as module
+
+In a `d.ts` file, that should make typescript import GraphQL files.
+
+```ts
+declare module '*.graphql' {
+  import { DocumentNode } from 'graphql'
+  const Schema: DocumentNode
+
+  export = Schema
+}
+```
