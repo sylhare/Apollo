@@ -5,42 +5,40 @@ export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string;
-  String: string;
-  Boolean: boolean;
-  Int: number;
-  Float: number;
+  ID: { input: string; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
 };
 
-export type GraphQLAddBookMutationResponse = {
-  __typename?: 'AddBookMutationResponse';
+export type GraphQLAddBookResponse = {
   book?: Maybe<GraphQLBook>;
-  code: Scalars['String'];
-  message: Scalars['String'];
-  success: Scalars['Boolean'];
+  code: Scalars['String']['output'];
+  message: Scalars['String']['output'];
+  success: Scalars['Boolean']['output'];
 };
 
 export type GraphQLBook = {
-  __typename?: 'Book';
-  author?: Maybe<Scalars['String']>;
-  title?: Maybe<Scalars['String']>;
+  author: Scalars['String']['output'];
+  title: Scalars['String']['output'];
 };
 
 export type GraphQLMutation = {
-  __typename?: 'Mutation';
-  addBook?: Maybe<GraphQLAddBookMutationResponse>;
+  addBook?: Maybe<GraphQLAddBookResponse>;
 };
 
 
 export type GraphQLMutationAddBookArgs = {
-  author?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
+  author?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type GraphQLQuery = {
-  __typename?: 'Query';
   books: Array<GraphQLBook>;
 };
 
@@ -113,27 +111,28 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 ) => TResult | Promise<TResult>;
 
 
+
 /** Mapping between all available schema types and the resolvers types */
 export type GraphQLResolversTypes = ResolversObject<{
-  AddBookMutationResponse: ResolverTypeWrapper<GraphQLAddBookMutationResponse>;
+  AddBookResponse: ResolverTypeWrapper<GraphQLAddBookResponse>;
   Book: ResolverTypeWrapper<GraphQLBook>;
-  Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
-  String: ResolverTypeWrapper<Scalars['String']>;
+  String: ResolverTypeWrapper<Scalars['String']['output']>;
 }>;
 
 /** Mapping between all available schema types and the resolvers parents */
 export type GraphQLResolversParentTypes = ResolversObject<{
-  AddBookMutationResponse: GraphQLAddBookMutationResponse;
+  AddBookResponse: GraphQLAddBookResponse;
   Book: GraphQLBook;
-  Boolean: Scalars['Boolean'];
+  Boolean: Scalars['Boolean']['output'];
   Mutation: {};
   Query: {};
-  String: Scalars['String'];
+  String: Scalars['String']['output'];
 }>;
 
-export type GraphQLAddBookMutationResponseResolvers<ContextType = MyContext, ParentType extends GraphQLResolversParentTypes['AddBookMutationResponse'] = GraphQLResolversParentTypes['AddBookMutationResponse']> = ResolversObject<{
+export type GraphQLAddBookResponseResolvers<ContextType = MyContext, ParentType extends GraphQLResolversParentTypes['AddBookResponse'] = GraphQLResolversParentTypes['AddBookResponse']> = ResolversObject<{
   book?: Resolver<Maybe<GraphQLResolversTypes['Book']>, ParentType, ContextType>;
   code?: Resolver<GraphQLResolversTypes['String'], ParentType, ContextType>;
   message?: Resolver<GraphQLResolversTypes['String'], ParentType, ContextType>;
@@ -142,13 +141,13 @@ export type GraphQLAddBookMutationResponseResolvers<ContextType = MyContext, Par
 }>;
 
 export type GraphQLBookResolvers<ContextType = MyContext, ParentType extends GraphQLResolversParentTypes['Book'] = GraphQLResolversParentTypes['Book']> = ResolversObject<{
-  author?: Resolver<Maybe<GraphQLResolversTypes['String']>, ParentType, ContextType>;
-  title?: Resolver<Maybe<GraphQLResolversTypes['String']>, ParentType, ContextType>;
+  author?: Resolver<GraphQLResolversTypes['String'], ParentType, ContextType>;
+  title?: Resolver<GraphQLResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
 export type GraphQLMutationResolvers<ContextType = MyContext, ParentType extends GraphQLResolversParentTypes['Mutation'] = GraphQLResolversParentTypes['Mutation']> = ResolversObject<{
-  addBook?: Resolver<Maybe<GraphQLResolversTypes['AddBookMutationResponse']>, ParentType, ContextType, Partial<GraphQLMutationAddBookArgs>>;
+  addBook?: Resolver<Maybe<GraphQLResolversTypes['AddBookResponse']>, ParentType, ContextType, Partial<GraphQLMutationAddBookArgs>>;
 }>;
 
 export type GraphQLQueryResolvers<ContextType = MyContext, ParentType extends GraphQLResolversParentTypes['Query'] = GraphQLResolversParentTypes['Query']> = ResolversObject<{
@@ -156,7 +155,7 @@ export type GraphQLQueryResolvers<ContextType = MyContext, ParentType extends Gr
 }>;
 
 export type GraphQLResolvers<ContextType = MyContext> = ResolversObject<{
-  AddBookMutationResponse?: GraphQLAddBookMutationResponseResolvers<ContextType>;
+  AddBookResponse?: GraphQLAddBookResponseResolvers<ContextType>;
   Book?: GraphQLBookResolvers<ContextType>;
   Mutation?: GraphQLMutationResolvers<ContextType>;
   Query?: GraphQLQueryResolvers<ContextType>;
