@@ -1,32 +1,43 @@
-import { GraphQLMutationResolvers, GraphQLQueryResolvers, GraphQLResolvers } from '../__generated__/resolvers-types';
+import {
+  GraphQLAddBookResponse,
+  GraphQLBook,
+  GraphQLMutationAddBookArgs,
+  GraphQLMutationResolvers,
+  GraphQLQueryResolvers,
+  GraphQLResolvers
+} from '../__generated__/resolvers-types';
+import { MyContext } from './server';
+
+// --- QUERY ---
+// With type inference from GraphQLQueryResolvers
+// const Query: GraphQLQueryResolvers = {
+//   books: (parent, args, context) => context.dataSources.books,
+// }
 
 const Query: GraphQLQueryResolvers = {
-  books: (parent, args, context) => context.dataSources.books,
+  books: (
+    _parent: null,
+    _args: unknown,
+    context: MyContext
+  ): GraphQLBook[] => context.dataSources.books.getBooks(),
 }
 
-/**
- * With more types
- * const query: GraphQLQueryResolvers = {
- *   books: (parent: null, args: unknown, context: MyContext): GraphQLBook[] => context.dataSources.books,
- * }
- * */
+
+// --- MUTATION ---
+// With type inference from GraphQLMutationResolvers
+// const Mutation: GraphQLMutationResolvers = {
+//   addBook: (_, { title, author }, context) => (
+//     { code: 'success', success: true, message: 'msg', book: { title, author } }
+//   ),
+// }
 
 const Mutation: GraphQLMutationResolvers = {
-  addBook: (_, { title, author }, context) => (
-    { code: 'success', success: true, message: 'msg', book: { title, author } }
-  ),
+  addBook: (_: null, { title, author }: GraphQLMutationAddBookArgs): GraphQLAddBookResponse => {
+    return (
+      { code: 'success', success: true, message: 'msg', book: { title, author } }
+    );
+  },
 }
-
-/**
- * With more types
- * const mutation: GraphQLMutationResolvers = {
- *   addBook: (_: null, { title, author }: GraphQLMutationAddBookArgs): GraphQLAddBookMutationResponse => {
- *     return (
- *       { code: 'success', success: true, message: 'msg', book: { title, author } }
- *     );
- *   },
- * }
- */
 
 
 export const resolvers: GraphQLResolvers = {
