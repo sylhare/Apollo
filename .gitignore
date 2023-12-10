@@ -104,5 +104,6 @@ dist
 .tern-port
 **/.idea/**
 **/package-lock.json
+!/**/legacy/package-lock.json
 **/.gradle/*
 **/build/**
