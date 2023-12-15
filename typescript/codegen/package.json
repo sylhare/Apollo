@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "generate": "graphql-codegen --config codegen.yml",
-    "build": "npm run generate && tsc && cp ./src/graphql/schema.graphql ./dist/graphql/",
-    "start": "npm run build && node ./dist/index.js"
+    "generate:federation": "graphql-codegen --config codegen.federation.yml",
+    "build": "npm run generate && tsc && cp ./src/graphql/*.graphql ./dist/graphql/",
+    "start": "npm run build && node ./dist/index.js",
+    "start:federation": "npm run build && node ./dist/index.federation.js"
   },
   "author": "",
   "license": "ISC",
