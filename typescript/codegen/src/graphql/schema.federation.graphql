@@ -1,0 +1,54 @@
+# Federation
+directive @key(fields: String) on OBJECT
+directive @external on FIELD_DEFINITION
+directive @extends on OBJECT
+
+type Query {
+    books: [Book!]!
+    pages(bookId: ID!): [Page!]!
+}
+
+type Mutation {
+    addBook(input: AddBookInput): AddBookResponse
+}
+
+type Book @key(fields: "id") {
+    id: ID!
+    title: String!
+    author: String!
+    category: BookCategory!
+    pages: [Page]!
+    editor: Editor!
+}
+
+type Page {
+    number: Int!
+    content: String!
+    #book: Book!
+}
+
+type Editor @key(fields: "id") @extends {
+    id: ID! @external
+}
+
+enum BookCategory {
+    FICTION,
+    BIOGRAPHY,
+    POETRY,
+    HISTORY,
+    EDUCATION,
+}
+
+input AddBookInput {
+    title: String
+    category: BookCategory
+    author: String
+    editorId: ID
+}
+
+type AddBookResponse {
+    code: String!
+    success: Boolean!
+    message: String!
+    book: Book
+}
