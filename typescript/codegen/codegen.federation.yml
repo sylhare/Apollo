@@ -1,0 +1,26 @@
+schema:
+  - "./src/graphql/schema.federation.graphql"
+generates:
+  ./src/__generated__/resolvers-types.federation.ts:
+    plugins:
+      - "typescript"
+      - "typescript-resolvers"
+      - "typescript-operations"
+    config:
+      #federation: true
+      wrapFieldDefinitions: true
+      useIndexSignature: true
+      skipTypename: true
+      typesPrefix: GraphQL
+      enumValues:
+        BookCategory: ../app/models#BookCategory
+      config:
+        declarationKind:
+          type: interface
+          input: interface
+          scalar: interface
+          arguments: interface
+          interface: interface
+      scalars:
+        Date: Date
+      contextType: "../app/server#MyContext"
