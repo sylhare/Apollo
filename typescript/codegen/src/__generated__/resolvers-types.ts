@@ -8,39 +8,39 @@ export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Mayb
 export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 /** All built-in and custom scalars, mapped to their actual values */
-export type Scalars = {
+export interface Scalars {
   ID: { input: string; output: string; }
   String: { input: string; output: string; }
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
-};
+}
 
-export type GraphQLAddBookResponse = {
+export interface GraphQLAddBookResponse {
   book?: Maybe<GraphQLBook>;
   code: Scalars['String']['output'];
   message: Scalars['String']['output'];
   success: Scalars['Boolean']['output'];
-};
+}
 
-export type GraphQLBook = {
+export interface GraphQLBook {
   author: Scalars['String']['output'];
   title: Scalars['String']['output'];
-};
+}
 
-export type GraphQLMutation = {
+export interface GraphQLMutation {
   addBook?: Maybe<GraphQLAddBookResponse>;
-};
+}
 
 
-export type GraphQLMutationAddBookArgs = {
+export interface GraphQLMutationAddBookArgs {
   author?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
-};
+}
 
-export type GraphQLQuery = {
+export interface GraphQLQuery {
   books: Array<GraphQLBook>;
-};
+}
 
 export type WithIndex<TObject> = TObject & Record<string, any>;
 export type ResolversObject<TObject> = WithIndex<TObject>;

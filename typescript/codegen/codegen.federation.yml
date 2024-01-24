@@ -7,20 +7,23 @@ generates:
       - "typescript-resolvers"
       - "typescript-operations"
     config:
-      #federation: true
+      federation: true
+      allowParentTypeOverride: true
       wrapFieldDefinitions: true
       useIndexSignature: true
       skipTypename: true
       typesPrefix: GraphQL
+      defaultMapper: Partial<{T}>
+      mappers:
+        BookCategory: ../app/models#BookCategory
       enumValues:
         BookCategory: ../app/models#BookCategory
-      config:
-        declarationKind:
-          type: interface
-          input: interface
-          scalar: interface
-          arguments: interface
-          interface: interface
+      declarationKind:
+        type: interface
+        input: interface
+        scalar: interface
+        arguments: interface
+        interface: interface
       scalars:
         Date: Date
       contextType: "../app/server#MyContext"

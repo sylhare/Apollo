@@ -12,19 +12,17 @@ generates:
       useIndexSignature: true
       typesPrefix: GraphQL
       typesSuffix: ""
-      # Providing our context's interface ensures our
-      # context's type is set for all of our resolvers.
-
-      # Note, this file path starts from the location of the
-      # file where you generate types.
-      config:
-        declarationKind:
-          type: interface
-          input: interface
-          scalar: interface
-          arguments: interface
-          interface: interface
+      declarationKind:
+        type: interface
+        input: interface
+        scalar: interface
+        arguments: interface
+        interface: interface
       skipTypename: true
       scalars:
         Date: Date
+      # Providing our context's interface ensures our
+      # context's type is set for all of our resolvers.
+      # Note, this file path starts from the location of the
+      # file where you generate types.
       contextType: "../app/server#MyContext"

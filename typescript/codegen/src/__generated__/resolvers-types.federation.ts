@@ -9,75 +9,92 @@ export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Mayb
 export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 export type FieldWrapper<T> = T;
+export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 export type EnumResolverSignature<T, AllowedValues = any> = { [key in keyof T]?: AllowedValues };
 export type RequireFields<T, K extends keyof T> = Omit<T, K> & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
-export type Scalars = {
+export interface Scalars {
   ID: { input: string; output: string; }
   String: { input: string; output: string; }
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
-};
+}
 
-export type GraphQLAddBookInput = {
+export interface GraphQLAddBookInput {
   author?: InputMaybe<Scalars['String']['input']>;
   category?: InputMaybe<BookCategory>;
   editorId?: InputMaybe<Scalars['ID']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
-};
+}
 
-export type GraphQLAddBookResponse = {
+export interface GraphQLAddBookResponse {
   book?: Maybe<FieldWrapper<GraphQLBook>>;
   code: FieldWrapper<Scalars['String']['output']>;
   message: FieldWrapper<Scalars['String']['output']>;
   success: FieldWrapper<Scalars['Boolean']['output']>;
-};
+}
 
-export type GraphQLBook = {
+export interface GraphQLBook {
   author: FieldWrapper<Scalars['String']['output']>;
   category: FieldWrapper<BookCategory>;
   editor: FieldWrapper<GraphQLEditor>;
   id: FieldWrapper<Scalars['ID']['output']>;
   pages: Array<Maybe<FieldWrapper<GraphQLPage>>>;
   title: FieldWrapper<Scalars['String']['output']>;
-};
+}
 
 export { BookCategory };
 
-export type GraphQLEditor = {
+export interface GraphQLEditor {
   id: FieldWrapper<Scalars['ID']['output']>;
-};
+}
 
-export type GraphQLMutation = {
+export interface GraphQLMutation {
   addBook?: Maybe<FieldWrapper<GraphQLAddBookResponse>>;
-};
+}
 
 
-export type GraphQLMutationAddBookArgs = {
+export interface GraphQLMutationAddBookArgs {
   input?: InputMaybe<GraphQLAddBookInput>;
-};
+}
 
-export type GraphQLPage = {
+export interface GraphQLPage {
+  book?: Maybe<FieldWrapper<GraphQLBook>>;
   content: FieldWrapper<Scalars['String']['output']>;
   number: FieldWrapper<Scalars['Int']['output']>;
-};
+}
 
-export type GraphQLQuery = {
+export interface GraphQLQuery {
   books: Array<FieldWrapper<GraphQLBook>>;
   pages: Array<FieldWrapper<GraphQLPage>>;
-};
+}
 
 
-export type GraphQLQueryPagesArgs = {
+export interface GraphQLQueryPagesArgs {
   bookId: Scalars['ID']['input'];
-};
+}
 
 export type WithIndex<TObject> = TObject & Record<string, any>;
 export type ResolversObject<TObject> = WithIndex<TObject>;
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
 
+export type UnwrappedObject<T> = {
+        [P in keyof T]: T[P] extends infer R | Promise<infer R> | (() => infer R2 | Promise<infer R2>)
+          ? R & R2 : T[P]
+      };
+export type ReferenceResolver<TResult, TReference, TContext> = (
+      reference: TReference,
+      context: TContext,
+      info: GraphQLResolveInfo
+    ) => Promise<TResult> | TResult;
+
+      type ScalarCheck<T, S> = S extends true ? T : NullableCheck<T, S>;
+      type NullableCheck<T, S> = Maybe<T> extends T ? Maybe<ListCheck<NonNullable<T>, S>> : ListCheck<T, S>;
+      type ListCheck<T, S> = T extends (infer U)[] ? NullableCheck<U, S>[] : GraphQLRecursivePick<T, S>;
+      export type GraphQLRecursivePick<T, S> = { [K in keyof T & keyof S]: ScalarCheck<T[K], S[K]> };
+    
 
 export type ResolverWithResolve<TResult, TParent, TContext, TArgs> = {
   resolve: ResolverFn<TResult, TParent, TContext, TArgs>;
@@ -145,50 +162,40 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type GraphQLResolversTypes = ResolversObject<{
-  AddBookInput: GraphQLAddBookInput;
-  AddBookResponse: ResolverTypeWrapper<GraphQLAddBookResponse>;
-  Book: ResolverTypeWrapper<GraphQLBook>;
-  BookCategory: BookCategory;
-  Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
-  Editor: ResolverTypeWrapper<GraphQLEditor>;
-  ID: ResolverTypeWrapper<Scalars['ID']['output']>;
-  Int: ResolverTypeWrapper<Scalars['Int']['output']>;
+  AddBookInput: ResolverTypeWrapper<Partial<GraphQLAddBookInput>>;
+  AddBookResponse: ResolverTypeWrapper<Partial<Omit<GraphQLAddBookResponse, 'book'> & { book?: Maybe<GraphQLResolversTypes['Book']> }>>;
+  Book: ResolverTypeWrapper<Partial<Omit<GraphQLBook, 'category' | 'pages'> & { category: GraphQLResolversTypes['BookCategory'], pages: Array<Maybe<GraphQLResolversTypes['Page']>> }>>;
+  BookCategory: ResolverTypeWrapper<BookCategory>;
+  Boolean: ResolverTypeWrapper<Partial<Scalars['Boolean']['output']>>;
+  Editor: ResolverTypeWrapper<Partial<GraphQLEditor>>;
+  ID: ResolverTypeWrapper<Partial<Scalars['ID']['output']>>;
+  Int: ResolverTypeWrapper<Partial<Scalars['Int']['output']>>;
   Mutation: ResolverTypeWrapper<{}>;
-  Page: ResolverTypeWrapper<GraphQLPage>;
+  Page: ResolverTypeWrapper<Partial<Omit<GraphQLPage, 'book'> & { book?: Maybe<GraphQLResolversTypes['Book']> }>>;
   Query: ResolverTypeWrapper<{}>;
-  String: ResolverTypeWrapper<Scalars['String']['output']>;
+  String: ResolverTypeWrapper<Partial<Scalars['String']['output']>>;
 }>;
 
 /** Mapping between all available schema types and the resolvers parents */
 export type GraphQLResolversParentTypes = ResolversObject<{
-  AddBookInput: GraphQLAddBookInput;
-  AddBookResponse: GraphQLAddBookResponse;
-  Book: GraphQLBook;
-  Boolean: Scalars['Boolean']['output'];
-  Editor: GraphQLEditor;
-  ID: Scalars['ID']['output'];
-  Int: Scalars['Int']['output'];
+  AddBookInput: Partial<GraphQLAddBookInput>;
+  AddBookResponse: Partial<Omit<GraphQLAddBookResponse, 'book'> & { book?: Maybe<GraphQLResolversParentTypes['Book']> }>;
+  Book: Partial<Omit<GraphQLBook, 'pages'> & { pages: Array<Maybe<GraphQLResolversParentTypes['Page']>> }>;
+  Boolean: Partial<Scalars['Boolean']['output']>;
+  Editor: Partial<GraphQLEditor>;
+  ID: Partial<Scalars['ID']['output']>;
+  Int: Partial<Scalars['Int']['output']>;
   Mutation: {};
-  Page: GraphQLPage;
+  Page: Partial<Omit<GraphQLPage, 'book'> & { book?: Maybe<GraphQLResolversParentTypes['Book']> }>;
   Query: {};
-  String: Scalars['String']['output'];
+  String: Partial<Scalars['String']['output']>;
 }>;
 
 export type GraphQLExtendsDirectiveArgs = { };
 
 export type GraphQLExtendsDirectiveResolver<Result, Parent, ContextType = MyContext, Args = GraphQLExtendsDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
-export type GraphQLExternalDirectiveArgs = { };
-
-export type GraphQLExternalDirectiveResolver<Result, Parent, ContextType = MyContext, Args = GraphQLExternalDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
-
-export type GraphQLKeyDirectiveArgs = {
-  fields?: Maybe<Scalars['String']['input']>;
-};
-
-export type GraphQLKeyDirectiveResolver<Result, Parent, ContextType = MyContext, Args = GraphQLKeyDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
-
-export type GraphQLAddBookResponseResolvers<ContextType = MyContext, ParentType extends GraphQLResolversParentTypes['AddBookResponse'] = GraphQLResolversParentTypes['AddBookResponse']> = ResolversObject<{
+export type GraphQLAddBookResponseResolvers<ContextType = MyContext, ParentType = GraphQLResolversParentTypes['AddBookResponse']> = ResolversObject<{
   book?: Resolver<Maybe<GraphQLResolversTypes['Book']>, ParentType, ContextType>;
   code?: Resolver<GraphQLResolversTypes['String'], ParentType, ContextType>;
   message?: Resolver<GraphQLResolversTypes['String'], ParentType, ContextType>;
@@ -196,7 +203,8 @@ export type GraphQLAddBookResponseResolvers<ContextType = MyContext, ParentType 
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
-export type GraphQLBookResolvers<ContextType = MyContext, ParentType extends GraphQLResolversParentTypes['Book'] = GraphQLResolversParentTypes['Book']> = ResolversObject<{
+export type GraphQLBookResolvers<ContextType = MyContext, ParentType = GraphQLResolversParentTypes['Book']> = ResolversObject<{
+  __resolveReference?: ReferenceResolver<Maybe<GraphQLResolversTypes['Book']>, { __typename: 'Book' } & GraphQLRecursivePick<UnwrappedObject<ParentType>, {"id":true}>, ContextType>;
   author?: Resolver<GraphQLResolversTypes['String'], ParentType, ContextType>;
   category?: Resolver<GraphQLResolversTypes['BookCategory'], ParentType, ContextType>;
   editor?: Resolver<GraphQLResolversTypes['Editor'], ParentType, ContextType>;
@@ -208,22 +216,24 @@ export type GraphQLBookResolvers<ContextType = MyContext, ParentType extends Gra
 
 export type GraphQLBookCategoryResolvers = EnumResolverSignature<{ BIOGRAPHY?: any, EDUCATION?: any, FICTION?: any, HISTORY?: any, POETRY?: any }, GraphQLResolversTypes['BookCategory']>;
 
-export type GraphQLEditorResolvers<ContextType = MyContext, ParentType extends GraphQLResolversParentTypes['Editor'] = GraphQLResolversParentTypes['Editor']> = ResolversObject<{
-  id?: Resolver<GraphQLResolversTypes['ID'], ParentType, ContextType>;
+export type GraphQLEditorResolvers<ContextType = MyContext, ParentType = GraphQLResolversParentTypes['Editor']> = ResolversObject<{
+  __resolveReference?: ReferenceResolver<Maybe<GraphQLResolversTypes['Editor']>, { __typename: 'Editor' } & GraphQLRecursivePick<UnwrappedObject<ParentType>, {"id":true}>, ContextType>;
+
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
-export type GraphQLMutationResolvers<ContextType = MyContext, ParentType extends GraphQLResolversParentTypes['Mutation'] = GraphQLResolversParentTypes['Mutation']> = ResolversObject<{
+export type GraphQLMutationResolvers<ContextType = MyContext, ParentType = GraphQLResolversParentTypes['Mutation']> = ResolversObject<{
   addBook?: Resolver<Maybe<GraphQLResolversTypes['AddBookResponse']>, ParentType, ContextType, Partial<GraphQLMutationAddBookArgs>>;
 }>;
 
-export type GraphQLPageResolvers<ContextType = MyContext, ParentType extends GraphQLResolversParentTypes['Page'] = GraphQLResolversParentTypes['Page']> = ResolversObject<{
+export type GraphQLPageResolvers<ContextType = MyContext, ParentType = GraphQLResolversParentTypes['Page']> = ResolversObject<{
+  book?: Resolver<Maybe<GraphQLResolversTypes['Book']>, ParentType, ContextType>;
   content?: Resolver<GraphQLResolversTypes['String'], ParentType, ContextType>;
   number?: Resolver<GraphQLResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
-export type GraphQLQueryResolvers<ContextType = MyContext, ParentType extends GraphQLResolversParentTypes['Query'] = GraphQLResolversParentTypes['Query']> = ResolversObject<{
+export type GraphQLQueryResolvers<ContextType = MyContext, ParentType = GraphQLResolversParentTypes['Query']> = ResolversObject<{
   books?: Resolver<Array<GraphQLResolversTypes['Book']>, ParentType, ContextType>;
   pages?: Resolver<Array<GraphQLResolversTypes['Page']>, ParentType, ContextType, RequireFields<GraphQLQueryPagesArgs, 'bookId'>>;
 }>;
@@ -240,6 +250,4 @@ export type GraphQLResolvers<ContextType = MyContext> = ResolversObject<{
 
 export type GraphQLDirectiveResolvers<ContextType = MyContext> = ResolversObject<{
   extends?: GraphQLExtendsDirectiveResolver<any, any, ContextType>;
-  external?: GraphQLExternalDirectiveResolver<any, any, ContextType>;
-  key?: GraphQLKeyDirectiveResolver<any, any, ContextType>;
 }>;
