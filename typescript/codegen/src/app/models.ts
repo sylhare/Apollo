@@ -13,6 +13,7 @@ export interface EditorReference {
 export interface Page {
   number: number;
   content: string;
+  bookId: string;
 }
 
 export enum BookCategory {
@@ -36,21 +37,22 @@ export const books: Book[] = [
     editor: { id: 'two' } },
 ];
 
+// Mock database results
 export const pages: { bookId: string, pages: Page[] }[] = [
   {
     bookId: '1',
     pages: [
-      { number: 1, content: 'page 1' },
-      { number: 2, content: 'page 2' },
-      { number: 3, content: 'page 3' },
-      { number: 4, content: 'page 4' },
+      { number: 1, content: 'page 1', bookId: '1' },
+      { number: 2, content: 'page 2', bookId: '1' },
+      { number: 3, content: 'page 3', bookId: '1' },
+      { number: 4, content: 'page 4', bookId: '1' },
     ]
   },
   {
     bookId: '2',
     pages: [
-      { number: 1, content: 'Beginning' },
-      { number: 2, content: 'End' },
+      { number: 1, content: 'Beginning', bookId: '2' },
+      { number: 2, content: 'End', bookId: '2' },
     ]
   }
 ]

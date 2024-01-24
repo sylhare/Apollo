@@ -24,7 +24,7 @@ type Book @key(fields: "id") {
 type Page {
     number: Int!
     content: String!
-    #book: Book!
+    book: Book
 }
 
 type Editor @key(fields: "id") @extends {
