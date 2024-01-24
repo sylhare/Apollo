@@ -5,24 +5,33 @@ import {
   GraphQLMutationAddBookArgs,
   GraphQLMutationResolvers,
   GraphQLPage,
+  GraphQLPageResolvers,
   GraphQLQueryPagesArgs,
   GraphQLQueryResolvers,
   GraphQLResolvers,
-  GraphQLResolversTypes
+  GraphQLResolversTypes,
 } from '../__generated__/resolvers-types.federation';
 import { BookCategory } from './models';
 
 const Query: GraphQLQueryResolvers = {
-  books: (
-    _parent: null,
-    _args: null,
-    context: MyContext
-  ): GraphQLResolversTypes['Books'] => context.dataSources.books.getBooks(),
-  pages: (
-    _parent: null,
-    { bookId }: GraphQLQueryPagesArgs,
-    context: MyContext
-  ): GraphQLPage[] => context.dataSources.books.getPagesByBookId(bookId),
+  books,
+  pages,
+}
+
+function books(
+  _parent: null,
+  _args: null,
+  context: MyContext
+): Array<GraphQLResolversTypes['Book']> {
+  return context.dataSources.books.getBooks();
+}
+
+function pages(
+  _parent: any,
+  { bookId }: GraphQLQueryPagesArgs,
+  context: MyContext
+): GraphQLResolversTypes['Page'][] {
+  return context.dataSources.books.getPagesByBookId(bookId);
 }
 
 const Mutation: GraphQLMutationResolvers = {
@@ -30,7 +39,7 @@ const Mutation: GraphQLMutationResolvers = {
     _: null,
     { input: { title, author, category, editorId } }: GraphQLMutationAddBookArgs
   ): GraphQLResolversTypes['AddBookResponse'] => {
-    return ({
+    return {
       code: 'success', success: true, message: 'msg',
       book: {
         id: '1',
@@ -40,7 +49,7 @@ const Mutation: GraphQLMutationResolvers = {
         category: category ?? BookCategory.Education,
         pages: [{ number: 1, content: 'page' }]
       }
-    });
+    };
   },
 }
 
@@ -48,19 +57,30 @@ const Book: GraphQLBookResolvers = {
   __resolveReference: (
     book: { id: string },
     { dataSources: { books } }: MyContext
-  ): GraphQLResolversTypes['Books'] => books.getBookById(book.id),
+  ): GraphQLResolversTypes['Book'] => books.getBookById(book.id),
   pages: (
-    book: GraphQLBook, // Could be only the GraphQL Object + any extra data from the parent's resolver
+    book: GraphQLBook,
     _args: null,
     { dataSources: { books } }: MyContext
-  ): GraphQLPage[] => books.getPagesByBookId(book.id),
-  title: (parent: GraphQLBook) => {
-    return parent.title.toUpperCase();
-  },
+  ): GraphQLResolversTypes['Page'][] =>
+    books.getPagesByBookId(book.id)
+      .map(page => ({ ...page, book })), // add the book to the page directly so the `book` resolver doesn't have to fetch it again.
+  title: (parent: GraphQLBook) => parent.title.toUpperCase(),
+}
+
+const Page: GraphQLPageResolvers = {
+  book: (
+    page: GraphQLPage & { bookId?: string },  // bookId is not on the GraphQLPage type, but used internally and returned by the parent resolver
+    _args: null,
+    { dataSources: { books } }: MyContext
+  ): GraphQLResolversTypes['Book'] => {
+    return books.getBookById(page.bookId);
+  }
 }
 
 export const resolvers: GraphQLResolvers = {
   Query,
   Mutation,
   Book,
+  Page
 };
